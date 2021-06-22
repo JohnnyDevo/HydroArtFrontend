@@ -63,3 +63,7 @@ a, a:hover, a:visited, a:active {
 #submitButton:hover {
     background: lightblue;
 }
+
+#searchIcon {
+    object-fit: contain;
+}
