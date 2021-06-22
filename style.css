@@ -7,6 +7,7 @@
     border: none;
     padding: 0;
     display: block;
+    text-align: right;
 }
 
 #footer {
@@ -19,6 +20,7 @@
     margin: 0;
     border: none;
     padding: 0;
+    text-align: left;
 }
 
 #page-container {
@@ -55,6 +57,105 @@ body {
     color: white;
 }
 
+.navigation {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5rem 0.9rem;
+    width: fit-content;
+}
+
+.navigation, .navigation:hover, .navigation:visited, .navigation:active {
+    color: aquamarine;
+    text-decoration: none;
+}
+
+#search {
+    display: inline-block;
+    width: 200px;
+    max-width: 50%;
+    height: 1.2rem;
+    vertical-align: middle;
+}
+
+#searchBar {
+    display: inline;
+    width: 70%;
+    margin: auto;
+}
+
+#submitButton {
+    display: inline;
+    cursor: pointer;
+    background: skyblue;
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+#submitButton:hover {
+    background: lightblue;
+}
+
+#searchIcon {
+    max-width: 100%;
+    height: auto;
+}
+
+#fox {
+    position: absolute;
+    left: 0.6rem;
+    top: 0.5rem;
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
 #result {
     color: red;
+}
+
+@media only screen and (max-width: 850px) {
+    #header, #footer {
+        height: 1.5rem;
+    }
+    
+    .navigation {
+        font-size: 0.7rem;
+        margin: 0.25rem;
+    }
+    
+    #search {
+        width: 150px;
+    }
+
+    #searchBar {
+        font-size: 0.5rem;
+        position: relative;
+        bottom: 0.15rem;
+    }
+
+    #submitButton {
+        width: 1rem;
+        height: 1rem;
+        position: relative;
+        top: 0.14rem;
+    }
+
+    #searchIcon {
+        position: relative;
+        bottom: 0.37rem;
+    }
+    
+    #fox {
+        left: 0.3rem;
+        top: 0.25rem;
+        width: 1rem;
+        height: 1rem;
+    }
+    
+    #content-wrap {
+        padding: 1.5rem 1.0rem;
+    }
 }
