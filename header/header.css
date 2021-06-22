@@ -10,8 +10,8 @@ nav {
 
 html, body {
     display: block;
-    margin: none;
-    padding: none;
+    margin: 0px;
+    padding: 0px;
     border: none;
     width: 100%;
     height: 100%;
@@ -43,7 +43,7 @@ a, a:hover, a:visited, a:active {
     display: inline-block;
     width: 200px;
     max-width: 50%;
-    height: 100%;
+    height: 1.2rem;
 }
 
 #searchBar {
