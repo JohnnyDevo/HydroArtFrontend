@@ -3,6 +3,7 @@ document.onload = () => {
     let paramName = 'card';
 
     //regex to read the parameters
+    window.alert("before regex");
     paramName = paramName.replace(/[\[\]]/g, '\\$&');
     const regex = new RegExp('[?&]' + paramName + '(=([^&#]*)|&|#|$)');
     const results = regex.exec(window.location.href);
