@@ -24,19 +24,13 @@ a {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
-    background-color: #EEEEEE;
-    padding: 2px 6px 2px 6px;
-    border-top: 1px solid #CCCCCC;
-    border-right: 1px solid #333333;
-    border-bottom: 1px solid #333333;
-    border-left: 1px solid #CCCCCC;
+    margin: 0.5rem 0.9rem;
     width: fit-content;
     min-width: 120px;
-    border-radius: 10px;
 }
 
 a, a:hover, a:visited, a:active {
-    color: inherit;
+    color: aquamarine;
     text-decoration: none;
 }
 
@@ -45,6 +39,7 @@ a, a:hover, a:visited, a:active {
     width: 200px;
     max-width: 50%;
     height: 1.2rem;
+    margin-top: 0.4rem;
 }
 
 #searchBar {
@@ -68,4 +63,12 @@ a, a:hover, a:visited, a:active {
 #searchIcon {
     max-width: 100%;
     height: auto;
+}
+
+#fox {
+    position: fixed;
+    left: 0.6rem;
+    top: 0.5rem;
+    width: 1.4rem;
+    height: 1.4rem;
 }
