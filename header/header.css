@@ -47,13 +47,17 @@ a, a:hover, a:visited, a:active {
 }
 
 #searchBar {
+    display: inline;
     width: 80%;
     margin: auto;
 }
 
 #submitButton {
+    display: inline;
     cursor: pointer;
     background: blue;
+    width: 20%;
+    padding-top: 100%;
 }
 
 #submitButton:hover {
