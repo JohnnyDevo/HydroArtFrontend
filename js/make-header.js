@@ -7,25 +7,22 @@ document.write(`
             <input type="text" id="searchBar" name="card" placeholder="card lookup...">
             <button type="submit" id="submitButton"><img id="searchIcon" src="/search-icon.png"></button>
         </form>
-        <a id="user" class="navigation" href="/profile/index.html">Sign In</a>
+        <a id="user" class="navigation" href="/signin/index.html">Sign In</a>
     </nav>
 `);
 
 const url = "http://localhost:3000/users"
 
 async function getUser() {
-    const xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
-
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            const element = document.getElementById('user');
-            element.innerText = xhr.response.username;
-        }
-    }
-
-    xhr.open('GET', url);
-    xhr.send();
+    const response = await fetch(destination, {
+        method: 'GET',
+        redirect: 'manual',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        referrerPolicy: 'no-referrer'
+    });
+    alert(`get user result: ${response.json()}`);
 }
 
 getUser();

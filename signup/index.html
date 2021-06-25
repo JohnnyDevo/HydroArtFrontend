@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<HTML>
+
+    <HEAD>
+        <TITLE>User Profile</TITLE>
+        <link href='/style.css' rel='stylesheet'>
+        <script type="text/javascript" src="/js/signup.js"></script>
+    </HEAD>
+
+    <BODY>
+        <div id="page-container">
+            <script type="text/javascript" src="/js/make-header.js"></script>
+            <div id="content-wrap">
+
+                <H1>Sign up here</H1>
+                <form name="signup" action="" method="POST">
+                    <label for="username">username:</label>
+                    <input type="text" id="username" name="username">
+                    <br>
+                    <label for="password">password:</label>
+                    <input type="text" id="password" name="password">
+                    <br>
+                    <label for="confirmpassword">retype password:</label>
+                    <input type="text" id="confirmpassword" name="confirmpassword">
+                    <br>
+                    <label for="credits_name">artist alias:</label>
+                    <input type="text" id="credits_name" name="credits_name">
+                    <br>
+                    <label for="credits_url">artist page:</label>
+                    <input type="text" id="credits_url" name="credits_url">
+                    <br>
+                    <label for="contact_info">contact info:</label>
+                    <input type="text" id="contact_info" name="contact_info">
+                    <br>
+                    <input type="button" name="submitbutton" value="submit" onClick="signup(this.form)">
+                </form>
+
+            </div>
+            <script type="text/javascript" src="/js/make-footer.js"></script>
+        </div>
+    </BODY>
+
+</HTML> 

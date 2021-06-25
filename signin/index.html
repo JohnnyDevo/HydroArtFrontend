@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<HTML>
+
+    <HEAD>
+        <TITLE>User Profile</TITLE>
+        <link href='/style.css' rel='stylesheet'>
+        <script type="text/javascript" src="/js/signin.js"></script>
+    </HEAD>
+
+    <BODY>
+        <div id="page-container">
+            <script type="text/javascript" src="/js/make-header.js"></script>
+            <div id="content-wrap">
+
+                <form name="signup" action="" method="POST">
+                    <label for="username">username:</label>
+                    <input type="text" id="username" name="username">
+                    <br>
+                    <label for="password">password:</label>
+                    <input type="text" id="password" name="password">
+                    <br>
+                    <input type="button" name="submitbutton" value="submit" onClick="signin(this.form)">
+                </form>
+                <br><br><br><P>Don't have an account? <a href="/signup/index.html">Sign Up!</a></P>
+
+            </div>
+            <script type="text/javascript" src="/js/make-footer.js"></script>
+        </div>
+    </BODY>
+
+</HTML> 
