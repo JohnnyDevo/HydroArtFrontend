@@ -1,21 +1,28 @@
-const destination = 'http://localhost:3000/signup';
-
 async function signup(form) {
-    const data = JSON.stringify({
-        username: form.username,
-        password: form.password,
-        credits_name: form.credits_name,
-        credits_url: form.credits_url,
-        contact_info: form.contact_info
-    });
+    const destination = 'http://localhost:3000/users';
+
+    const data = {
+        username: form.username.value,
+        password: form.password.value,
+        credits_name: form.credits_name.value,
+        credits_url: form.credits_url.value,
+        contact_info: form.contact_info.value
+    };
+
     const response = await fetch(destination, {
         method: 'POST',
         redirect: 'manual',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
         referrerPolicy: 'no-referrer',
-        body: data
+        body: new URLSearchParams(data),
+        credentials: 'include'
     });
-    alert(`sign up response is: ${response.json()}`);
+    try {
+        const result = JSON.parse(await response.text());
+        window.location.href = '/signin/index.html';
+    } catch (error) {
+        
+    }
 }

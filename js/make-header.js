@@ -11,18 +11,27 @@ document.write(`
     </nav>
 `);
 
-const url = "http://localhost:3000/users"
-
 async function getUser() {
+    const destination = "http://localhost:3000/users"
+
     const response = await fetch(destination, {
         method: 'GET',
         redirect: 'manual',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
-        referrerPolicy: 'no-referrer'
+        referrerPolicy: 'no-referrer',
+        credentials: 'include'
     });
-    alert(`get user result: ${response.json()}`);
+    const text = await response.text()
+    try {
+        const result = JSON.parse(text);
+        const element = document.getElementById('user');
+        element.innerText = result.username;
+        element.href = "/profile/index.html"
+    } catch (error) {
+        
+    }
 }
 
 getUser();

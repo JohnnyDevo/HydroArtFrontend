@@ -1,10 +1,6 @@
-async function signin(form) {
-    const destination = 'http://localhost:3000/login';
+async function signout() {
+    const destination = 'http://localhost:3000/users/logout';
 
-    const data = {
-        username: form.username.value,
-        password: form.password.value
-    };
     const response = await fetch(destination, {
         method: 'POST',
         redirect: 'manual',
@@ -12,12 +8,11 @@ async function signin(form) {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
         referrerPolicy: 'no-referrer',
-        body: new URLSearchParams(data),
         credentials: 'include'
     });
     try {
         const result = JSON.parse(await response.text());
-        window.location.href = '/profile/index.html';
+        window.location.href = '/index.html';
     } catch (error) {
         
     }
