@@ -9,4 +9,23 @@ document.write(`
         </form>
         <a id="user" class="navigation" href="/profile/index.html">Sign In</a>
     </nav>
-`)
+`);
+
+const url = "http://localhost:3000/users"
+
+async function getUser() {
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            const element = document.getElementById('user');
+            element.innerText = xhr.response.username;
+        }
+    }
+
+    xhr.open('GET', url);
+    xhr.send();
+}
+
+getUser();
