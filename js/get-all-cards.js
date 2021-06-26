@@ -1,4 +1,4 @@
-function getCards() {
+async function getCards() {
     const destination = 'http://localhost:3000/cards';
 
     const response = await fetch(destination, {

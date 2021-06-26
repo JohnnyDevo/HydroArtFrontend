@@ -11,7 +11,7 @@ function getSearchText() {
     }
 };
 
-function doSearch() {
+async function doSearch() {
     const search = getSearchText();
     if (!search) {
         search = "";
