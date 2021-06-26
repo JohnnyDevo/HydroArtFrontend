@@ -10,5 +10,7 @@ async function getCards() {
         referrerPolicy: 'no-referrer'
     });
 
-    document.getElementById('results').innerText = await response.json();
+    const result = await response.json();
+
+    document.getElementById('results').innerText = result;
 }

@@ -5,24 +5,24 @@ async function onLoadPage(redirect) {
         method: 'GET',
         redirect: 'manual',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            'Content-Type': 'application/json;charset=UTF-8'
         },
         referrerPolicy: 'no-referrer',
         credentials: 'include'
     });
 
-    const responseText = await response.text();
-    let name;
-    try {
-        name = JSON.parse(responseText).username;
-    } catch (error) {
-        if (redirect) {
-            window.location.replace('/signin/index.html');
+    let username;
+    if (response.ok) {
+        const user = await response.json();
+        username = user.username;
+        if (!user.username) {
+            if (redirect) {
+                window.location.replace('/signin/index.html');
+            }
         }
-        name = null;
     }
 
-    makeHeader(name);
+    makeHeader(username);
     makeFooter();
 }
 
