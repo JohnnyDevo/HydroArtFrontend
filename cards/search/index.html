@@ -8,19 +8,19 @@
 
         <script type="text/javascript" src="/js/check-login.js"></script>
         <script type="text/javascript">onLoadPage();</script>
-        <TITLE>Card View</TITLE>
+        <TITLE>Card Search</TITLE>
         <link href='/style.css' rel='stylesheet'>
-        <script type="text/javascript" src="/js/get-specific-card-info.js"></script>
+        <script type="text/javascript" src="/js/search-cards.js"></script>
     </HEAD>
 
-    <BODY onload="getCardName()">
+    <BODY onload="doSearch()">
         <div id="page-container">
             <nav id="header"></nav>
             <div id="content-wrap">
 
-                <H1>Card View</H1>
-                <P>This card will query the server for a specific card and display extra info, such as what art others may have already submitted.</P>
-                <P id="result">This is a placeholder and javascript should replace this with an interpretation of the query string.</P>
+                <H1>results view</H1>
+
+                <div id="results"></div>
             </div>
             <nav id="footer"></nav>
         </div>

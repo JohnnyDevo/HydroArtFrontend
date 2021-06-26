@@ -10,9 +10,10 @@
         <script type="text/javascript">onLoadPage();</script>
         <TITLE>Cards</TITLE>
         <link href='/style.css' rel='stylesheet'>
+        <script type="text/javascript" src="/js/get-all-cards.js"></script>
     </HEAD>
 
-    <BODY>
+    <BODY onload="getCards()">
         <div id="page-container">
             <nav id="header"></nav>
             <div id="content-wrap">
@@ -25,6 +26,8 @@
                     <input id="card" name="card" type="text"><br><br>
                     <input type="submit" value="Submit">
                 </form>
+
+                <div id="results"></div>
 
             </div>
             <nav id="footer"></nav>
