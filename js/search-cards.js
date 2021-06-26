@@ -16,6 +16,7 @@ async function doSearch() {
     if (!search) {
         search = "";
     }
+    document.getElementById('search-text').innerText = `you searched for: ${search}`;
     const destination = 'http://localhost:3000/cards/search?';
     const query = `search=${encodeURIComponent(search)}`
 
@@ -28,5 +29,7 @@ async function doSearch() {
         referrerPolicy: 'no-referrer'
     });
 
-    document.getElementById('results').innerText = await response.json();
+    const result = await response.json();
+
+    document.getElementById('results').innerText = JSON.stringify(result, null, 1);
 }

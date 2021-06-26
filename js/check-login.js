@@ -39,7 +39,7 @@ function makeHeader(name) {
         <a class="navigation" href="/index.html">Home</a>
         <a class="navigation" href="/cards/index.html">Cards</a>
         <form id="search" action="/cards/search/index.html" method="GET">
-            <input type="text" id="searchBar" name="card" placeholder="card search...">
+            <input type="text" id="searchBar" name="search" placeholder="card search...">
             <button type="submit" id="submitButton"><img id="searchIcon" src="/search-icon.png"></button>
         </form>
         <a id="user" class="navigation" href="${link}">${label}</a>

@@ -12,5 +12,5 @@ async function getCards() {
 
     const result = await response.json();
 
-    document.getElementById('results').innerText = result;
+    document.getElementById('results').innerText = JSON.stringify(result, null, 1);
 }
