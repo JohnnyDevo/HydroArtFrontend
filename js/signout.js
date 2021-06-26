@@ -10,10 +10,7 @@ async function signout() {
         referrerPolicy: 'no-referrer',
         credentials: 'include'
     });
-    try {
-        const result = JSON.parse(await response.text());
+    if (response.ok) {
         window.location.href = '/index.html';
-    } catch (error) {
-        
     }
 }

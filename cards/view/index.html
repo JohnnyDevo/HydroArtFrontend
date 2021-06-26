@@ -6,21 +6,23 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
 
+        <script type="text/javascript" src="/js/header.js"></script>
+        <script type="text/javascript">onLoadPage();</script>
         <TITLE>Card View</TITLE>
         <link href='/style.css' rel='stylesheet'>
         <script type="text/javascript" src="/js/get-specific-card-info.js"></script>
     </HEAD>
 
     <BODY onload="getCardName()">
-        <div id="page-container">   
-            <script type="text/javascript" src="/js/make-header.js"></script>
+        <div id="page-container">
+            <nav id="header"></nav>
             <div id="content-wrap">
 
                 <H1>Card View</H1>
                 <P>This card will query the server for a specific card and display extra info, such as what art others may have already submitted.</P>
                 <P id="result">This is a placeholder and javascript should replace this with an interpretation of the query string.</P>
             </div>
-            <script type="text/javascript" src="/js/make-footer.js"></script>
+            <script type="text/javascript" src="/js/footer.js"></script>
         </div>
     </BODY>
 
