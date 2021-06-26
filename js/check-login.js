@@ -23,7 +23,7 @@ async function onLoadPage(redirect) {
     }
 
     makeHeader(name);
-    
+    makeFooter();
 }
 
 function makeHeader(name) {
@@ -43,5 +43,12 @@ function makeHeader(name) {
             <button type="submit" id="submitButton"><img id="searchIcon" src="/search-icon.png"></button>
         </form>
         <a id="user" class="navigation" href="${link}">${label}</a>
+    `;
+}
+
+function makeFooter() {
+    document.getElementById('footer').innerHTML = `
+        <a class="navigation" href="/aboutme/index.html">About Me</a>
+        <a class="navigation" href="/contactme/index.html">Contact Me</a>
     `;
 }
