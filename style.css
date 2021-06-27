@@ -116,6 +116,87 @@ body {
     color: red;
 }
 
+.card {
+    position: relative;
+    font-family: 'Kreon', serif;
+    --size-multiplier: 0.4;
+    width: calc(675px * var(--size-multiplier));
+    height: calc(950px * var(--size-multiplier));
+    font-size: calc(100% * var(--size-multiplier));
+}
+
+.card-portrait, .card-description-background, .card-frame, .card-banner, .card-energy-symbol {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.card-description-container, .card-type-container, .card-name-container, .card-cost-container {
+    position: absolute;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-description-container {
+    width: 75%;
+    height: 31.7%;
+    left: 12.9%;
+    top: 58.8%;
+}
+
+.card-description-text {
+    font-size: 225%
+}
+
+.card-type-container {
+    width: 18%;
+    height: 4.2%;
+    left: 41.5%;
+    top: 53.6%;
+}
+
+.card-type-text {
+    color: black;
+    font-weight: bold;
+    font-size: 175%;
+}
+
+.card-name-container {
+    width: 70%;
+    height: 7.3%;
+    left: 15.3%;
+    top: 12.4%;
+}
+
+.card-name-text {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-weight: bold;
+    font-size: 300%;
+}
+
+.card-cost-container {
+    width: 14.8%;
+    height: 10.5%;
+    left: 2.5%;
+    top: 6.8%;
+}
+
+.card-cost-text {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-weight: bold;
+    font-size: 500%;
+}
+
+.keyword {
+    color: yellow;
+}
+
+.upgraded {
+    color: green;
+}
+
 @media only screen and (max-width: 850px) {
     #header, #footer {
         height: 1.5rem;
