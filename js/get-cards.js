@@ -52,7 +52,7 @@ async function doSearch() {
 function populateResults(cards) {
     const resultsElement = document.getElementById('cards-container');
     for (const card in cards) {
-        resultsElement.appendChild(makeCard(card));
+        resultsElement.appendChild(makeCard(cards[card]));
     }
 }
 
@@ -66,6 +66,9 @@ function makeCard(card) {
     }
     if (card.cost == -1) {
         card.cost = "X";
+    }
+    if (card.rarity === "BASIC" || card.rarity === "STARTER") {
+        card.rarity = "COMMON";
     }
 
     let url = `/portraits/${card.type}.png`;
@@ -92,16 +95,19 @@ function makeCard(card) {
         cardElement.appendChild(energyElement);
     }
 
-    const costTextContainer = createDescriptionElement("cost", card.cost);
-    cardElement.appendChild(costTextContainer);
+    if (card.cost > -2) {
+        const costTextContainer = createDescriptionElement("cost", card.cost);
+        cardElement.appendChild(costTextContainer);
 
-    const upgradedCostTextContainer = createDescriptionElement("cost", card.upgraded_cost);
-    cardElement.appendChild(upgradedCostTextContainer);
+        const upgradedCostTextContainer = createDescriptionElement("cost", card.upgraded_cost);
+        cardElement.appendChild(upgradedCostTextContainer);
+        upgradedCostTextContainer.style.display = "none";
+    }
 
     const nameTextContainer = createDescriptionElement("name", card.name);
     cardElement.appendChild(nameTextContainer);
 
-    const typeTextContainer = createDescriptionElement("type", card.type);
+    const typeTextContainer = createDescriptionElement("type", card.type.charAt(0) + card.type.slice(1).toLowerCase());
     cardElement.appendChild(typeTextContainer);
 
     const descriptionTextContainer = createDescriptionElement("description", card.description);
@@ -109,6 +115,7 @@ function makeCard(card) {
 
     const upgradedDescriptionTextContainer = createDescriptionElement("description", card.upgraded_description);
     cardElement.appendChild(upgradedDescriptionTextContainer);
+    upgradedDescriptionTextContainer.style.display = "none";
 
     return cardElement;
 }
@@ -124,7 +131,7 @@ function createDescriptionElement(type, content) {
     const container = document.createElement("div");
     container.className = `card-${type}-container`;
     const text = document.createElement("div");
-    text.className = `${type}-text`;
+    text.className = `card-${type}-text`;
     text.innerHTML = content;
     container.appendChild(text);
     return container;
