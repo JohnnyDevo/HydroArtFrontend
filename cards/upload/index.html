@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<HTML>
+
+    <HEAD>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+
+        <script type="text/javascript" src="/js/check-login.js"></script>
+        <script type="text/javascript">onLoadPage(true);</script>
+        <TITLE>Upload Art</TITLE>
+        <link href='/style.css' rel='stylesheet'>
+        <script type="text/javascript" src="/js/upload-art.js"></script>
+    </HEAD>
+
+    <BODY>
+        <div id="page-container">
+            <nav id="header"></nav>
+            <div id="content-wrap">
+
+                <H1>upload form</H1>
+                <form action="">
+                    <input id="submission" name="submission" type="file">
+                    <input id="cardID" name="cardID" type="text">
+                    <input type="button" name="submitbutton" value="submit" onclick="uploadArt(this.form);">
+                </form>
+
+                <img id="reflect" src="">
+            </div>
+            <nav id="footer"></nav>
+        </div>
+    </BODY>
+
+</HTML> 
