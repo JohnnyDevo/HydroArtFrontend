@@ -10,8 +10,8 @@ async function getAllCards() {
         referrerPolicy: 'no-referrer'
     });
 
-    const cards = await response.json();
-    populateResults(cards);
+    const result = await response.json();
+    populateResults(result.cards, result.arts);
 }
 
 function getSearchText() {
@@ -45,18 +45,22 @@ async function doSearch() {
         referrerPolicy: 'no-referrer'
     });
 
-    const cards = await response.json();
-    populateResults(cards);
+    const result = await response.json();
+    populateResults(result.cards, result.arts);
 }
 
-function populateResults(cards) {
+function populateResults(cards, arts) {
     const resultsElement = document.getElementById('cards-container');
     for (const card in cards) {
-        resultsElement.appendChild(makeCard(cards[card]));
+        let art;
+        if (arts) {
+            art = arts.filter(art => {return art.card_id === cards[card].id})[0];
+        }
+        resultsElement.appendChild(makeCard(cards[card], art));
     }
 }
 
-function makeCard(card) {
+function makeCard(card, art) {
     const cardElement = document.createElement("div");
     cardElement.className = "card";
     if (!card.subtype) {
@@ -71,7 +75,15 @@ function makeCard(card) {
         card.rarity = "COMMON";
     }
 
-    let url = `/portraits/${card.type}.png`;
+    let url;
+
+    if (art) {
+        url = `data:image/png;base64,${art.encode}`;
+        const artElement = createImageElement("art", url);
+        cardElement.appendChild(artElement);
+    }
+
+    url = `/portraits/${card.type}.png`;
     const portraitElement = createImageElement("portrait", url);
     cardElement.appendChild(portraitElement);
     

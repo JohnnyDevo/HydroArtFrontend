@@ -138,6 +138,14 @@ body {
     height: 100%;
 }
 
+.card-art {
+    position: absolute;
+    width: calc(500px * var(--size-multiplier));
+    height: calc(380px * var(--size-multiplier));
+    left: calc(100% * calc(calc(calc(675 - 500) / 2) / 675));               /*half the extra width between image size and parent container*/
+    top: calc(100% * calc(calc(calc(calc(950 - 380) / 2) - 133) / 950));    /*half the extra height between image size and parent container, minus 133 pixels*/
+}
+
 .card-description-container, .card-type-container, .card-name-container, .card-cost-container {
     position: absolute;
     display: flex;
