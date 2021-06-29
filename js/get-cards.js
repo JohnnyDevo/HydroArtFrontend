@@ -55,7 +55,7 @@ async function getSingleCard() {
     }
     const destination = `http://localhost:3000/cards/${cardID}`;
 
-    const response = await fetch(`${destination}${query}`, {
+    const response = await fetch(destination, {
         method: 'GET',
         redirect: 'manual',
         headers: {
@@ -75,13 +75,13 @@ function populateResults(cards, arts) {
         if (arts) {
             art = arts.filter(art => {return art.card_id === cards[card].id})[0];
         }
-        resultsElement.appendChild(makeCard(cards[card], art, false));
+        resultsElement.appendChild(makeCard(cards[card], art, false, true));
     }
 }
 
-function makeCard(card, art, preview) {
+function makeCard(card, art, isPreview, makeLink) {
     const cardElement = document.createElement("div");
-    if (preview) {
+    if (isPreview) {
         cardElement.className = "card-preview";
     } else {
         cardElement.className = "card";
@@ -152,6 +152,15 @@ function makeCard(card, art, preview) {
     cardElement.appendChild(upgradedDescriptionTextContainer);
     upgradedDescriptionTextContainer.style.display = "none";
 
+    if (makeLink) {
+        const clickableLink = document.createElement("a");
+        clickableLink.href = `http://localhost/cards/view/index.html?cardID=${card.id}`;
+        const linkSpan = document.createElement("span");
+        linkSpan.className = "card-link";
+        clickableLink.appendChild(linkSpan);
+        cardElement.appendChild(clickableLink);
+    }
+
     return cardElement;
 }
 
@@ -207,8 +216,8 @@ function showPreviousArt() {
 function makeSingleCardView(cardInfo) {
 
     const resultsElement = document.getElementById('cards-container');
-    const card = makeCard(cardInfo.card, null, false);
-    card.style.setProperty('--size-multiplier', "calc(2 * var(--size-multiplier))");
+    const card = makeCard(cardInfo.card, null, false, false);
+    resultsElement.style.setProperty('--size-multiplier', "calc(1.5 * var(--base-size))");
     resultsElement.appendChild(card);
 
     if (cardInfo.arts) {
@@ -241,12 +250,12 @@ function makeSingleCardView(cardInfo) {
         //append keywords container to resultsElement
     }
 
-    if (cardInfo.card.swapsTo) {
+    if (cardInfo.swapsTo) {
         let art;
-        if (cardInfo.card.swapsTo.art) {
-            art = cardInfo.card.swapsTo.art;
+        if (cardInfo.swapsTo.art) {
+            art = cardInfo.swapsTo.art;
         }
-        const previewElement = makeCard(cardInfo.card.swapsTo, art, true);
+        const previewElement = makeCard(cardInfo.swapsTo, art, true);
         resultsElement.prepend(previewElement);
     }
 }
