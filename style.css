@@ -118,6 +118,7 @@ body {
 }
 
 #cards-container {
+    --size-multiplier: 0.4;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -126,7 +127,15 @@ body {
 .card {
     position: relative;
     font-family: 'Kreon', serif;
-    --size-multiplier: 0.4;
+    width: calc(675px * var(--size-multiplier));
+    height: calc(950px * var(--size-multiplier));
+    font-size: calc(100% * var(--size-multiplier));
+}
+
+.card-preview {
+    --size-multiplier: calc(0.5 * var(--size-multiplier));
+    position: relative;
+    font-family: 'Kreon', serif;
     width: calc(675px * var(--size-multiplier));
     height: calc(950px * var(--size-multiplier));
     font-size: calc(100% * var(--size-multiplier));
