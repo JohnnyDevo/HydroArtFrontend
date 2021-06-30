@@ -10,8 +10,7 @@ async function getAllCards() {
         referrerPolicy: 'no-referrer'
     });
 
-    const result = await response.json();
-    populateResults(result.cards, result.arts);
+    populateResults(await response.json());
 }
 
 function getQueryText(paramName) {
@@ -44,8 +43,7 @@ async function doSearch() {
         referrerPolicy: 'no-referrer'
     });
 
-    const result = await response.json();
-    populateResults(result.cards, result.arts);
+    populateResults(await response.json());
 }
 
 async function getSingleCard() {
@@ -68,14 +66,23 @@ async function getSingleCard() {
     makeSingleCardView(result);
 }
 
-function populateResults(cards, arts) {
+function populateResults(results) {
     const resultsElement = document.getElementById('cards-container');
-    for (const card in cards) {
+    for (const card in results.cards) {
         let art;
-        if (arts) {
-            art = arts.filter(art => {return art.card_id === cards[card].id})[0];
+        if (results.arts) {
+            art = results.arts.find(art => art.card_id === results.cards[card].id);
         }
-        resultsElement.appendChild(makeCard(cards[card], art, false, true));
+        const cardElement = makeCard(results.cards[card], art, false, true);
+        if (results.cards[card].swaps_to) {
+            art = null;
+            if (results.arts) {
+                art = results.arts.find(art => art.card_id === results.cards[card].swaps_to);
+            }
+            const previewElement = makeCard(results.swaps.find(swapCard => swapCard.id === results.cards[card].swaps_to), art, true, false);
+            cardElement.prepend(previewElement);
+        }
+        resultsElement.appendChild(cardElement);
     }
 }
 
