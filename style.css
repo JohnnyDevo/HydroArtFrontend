@@ -236,7 +236,7 @@ body {
 }
 
 .keyword {
-    color: yellow;
+    color: rgb(238, 200, 81);
 }
 
 .upgrade {
@@ -245,6 +245,62 @@ body {
 
 .mana-symbol {
     height: 1em;
+}
+
+.keyword-container {
+    --base-size: 1.0;
+    --size-multiplier: var(--base-size);
+    width: calc(320px * var(--size-multiplier));
+    position: relative;
+    font-family: 'Kreon', serif;
+}
+
+.keyword-content, .keyword-text, .keyword-name, .keyword-description, .keyword-background-top, .keyword-background-middle, .keyword-background-bottom {
+    margin: 0px;
+    display: block;
+}
+
+.keyword-content {
+    position: relative;
+    height: fit-content;
+}
+
+.keyword-text {
+    padding: 18px 20px;
+}
+
+.keyword-name {
+    font-weight: bold;
+    color: rgb(238, 200, 81);
+    font-size: 150%;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.keyword-description {
+    top: 5px;
+    font-size: 140%;
+}
+
+.keyword-background-top {
+    position: absolute;
+}
+
+.keyword-background-middle {
+    height: calc(100% - 64px);
+    width: 100%;
+    position: absolute;
+    top: 32px;
+    left: 0;
+}
+
+.keyword-background-bottom {
+    position: absolute;
+    bottom: 0px;
+}
+
+.keyword-name, .keyword-description {
+    position: relative;
+    z-index: 1;
 }
 
 @media only screen and (max-width: 850px) {
