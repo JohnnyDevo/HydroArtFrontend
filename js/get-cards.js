@@ -206,7 +206,7 @@ function changeArt(next) {
             if (nextArt >= artsArray.length) {
                 nextArt = 0;
             }
-            artsArray[nextArt].style.display === 'block';
+            artsArray[nextArt].style.display = 'block';
             break;
         }
     }
@@ -232,29 +232,33 @@ function makeSingleCardView(cardInfo) {
             let url = `data:image/png;base64,${cardInfo.arts[artInfo].encode}`;
             const artElement = createImageElement("art", url);
             card.appendChild(artElement);
-            artsArray.push[artElement];
-            if (artInfo.id !== cardInfo.defaultArtID) {
+            artsArray.push(artElement);
+            if (cardInfo.arts[artInfo].id !== cardInfo.defaultArtID) {
                 artElement.style.display = "none";
+            } else {
+                artElement.style.display = "block";
             }
         }
         if (artsArray.length > 1) {
-            const showPreviousArt = document.createElement("button");
-            showPreviousArt.id = "show-previous-art";
-            showPreviousArt.onclick = showPreviousArt;
-            const showNextArt = document.createElement("button");
-            showNextArt.id = "show-next-art";
-            showNextArt.onclick = showNextArt;
-            resultsElement.prepend(showPreviousArt);
-            resultsElement.append(showNextArt);
+            const showPreviousArtButton = document.createElement("button");
+            showPreviousArtButton.id = "show-previous-art";
+            showPreviousArtButton.addEventListener('click', showPreviousArt);
+            const showNextArtButton = document.createElement("button");
+            showNextArtButton.id = "show-next-art";
+            showNextArtButton.addEventListener('click', showNextArt);
+            resultsElement.prepend(showPreviousArtButton);
+            resultsElement.append(showNextArtButton);
         }
     }
 
     if (cardInfo.keywords) {
-        //create a keywords container
+        const container = document.createElement("div");
+        container.className = "keywords-container";
         for (const keywordInfo in cardInfo.keywords) {
-            //create a keyword, append it to keywords container
+            const keywordElement = createKeywordElement(cardInfo.keywords[keywordInfo].name, cardInfo.keywords[keywordInfo].description);
+            container.appendChild(keywordElement);
         }
-        //append keywords container to resultsElement
+        card.appendChild(container);
     }
 
     if (cardInfo.swapsTo) {
@@ -262,7 +266,48 @@ function makeSingleCardView(cardInfo) {
         if (cardInfo.swapsTo.art) {
             art = cardInfo.swapsTo.art;
         }
-        const previewElement = makeCard(cardInfo.swapsTo, art, true);
-        resultsElement.prepend(previewElement);
+        const previewElement = makeCard(cardInfo.swapsTo, art, true, true);
+        previewElement.style.display = "block";
+        card.prepend(previewElement);
     }
+}
+
+function createKeywordElement(name, description) {
+    const container = document.createElement("div");
+    container.className = "keyword-container";
+
+    const backgroundTop = document.createElement("img");
+    backgroundTop.className = "keyword-background-top";
+    backgroundTop.src = "/tips/tipTop.png";
+    container.appendChild(backgroundTop);
+
+    const content = document.createElement("div");
+    content.className = "keyword-content";
+    container.appendChild(content);
+
+    const text = document.createElement("div");
+    text.className = "keyword-text";
+    content.appendChild(text);
+
+    const keywordName = document.createElement("p");
+    keywordName.className = "keyword-name";
+    keywordName.innerText = name;
+    text.appendChild(keywordName);
+
+    const keywordDescription = document.createElement("p");
+    keywordDescription.className = "keyword-description";
+    keywordDescription.innerHTML = description;
+    text.appendChild(keywordDescription);
+
+    const backgroundMiddle = document.createElement("img");
+    backgroundMiddle.className = "keyword-background-middle";
+    backgroundMiddle.src = "/tips/tipMid.png";
+    content.appendChild(backgroundMiddle);
+
+    const backgroundBottom = document.createElement("img");
+    backgroundBottom.className = "keyword-background-bottom";
+    backgroundBottom.src = "/tips/tipBot.png";
+    container.appendChild(backgroundBottom);
+
+    return container;
 }

@@ -47,6 +47,7 @@ html {
     border: none;
     padding: 0;
     background-image: url('/portrait.jpg');
+    background-attachment: fixed;
 }
 
 body {
@@ -139,6 +140,7 @@ body {
 .card-preview {
     --preview-size: 0.7;
     --size: calc(var(--preview-size) * var(--size-multiplier));
+    top: calc(75px * calc(var(--size-multiplier) * calc(1 - var(--preview-size))));
     position: absolute;
     left: calc(-100% * var(--preview-size));
     display: none;
@@ -247,12 +249,20 @@ body {
     height: 1em;
 }
 
+.keywords-container {
+    margin-top: 45px;
+    position: absolute;
+    right: -80%;
+    font-size: 175%;
+}
+
 .keyword-container {
     --base-size: 1.0;
     --size-multiplier: var(--base-size);
     width: calc(320px * var(--size-multiplier));
     position: relative;
     font-family: 'Kreon', serif;
+    margin-bottom: 6px;
 }
 
 .keyword-content, .keyword-text, .keyword-name, .keyword-description, .keyword-background-top, .keyword-background-middle, .keyword-background-bottom {
