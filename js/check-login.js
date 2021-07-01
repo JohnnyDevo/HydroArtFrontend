@@ -43,11 +43,6 @@ function makeHeader(name) {
         </form>
         <a id="user" class="navigation" href="${link}">${label}</a>
     `;
-
-    const icon = document.createElement("img");
-    icon.src = "/favicon.ico";
-    icon.id = "fox";
-    document.getElementById('context-buttons').appendChild(icon);
 }
 
 function makeFooter() {

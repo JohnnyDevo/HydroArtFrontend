@@ -1,3 +1,21 @@
+function makeButton() {
+    const context = document.getElementById('context-buttons');
+    const container = document.createElement('div');
+    container.id = "toggle-upgrades";
+    context.append(container);
+
+    const button = document.createElement('button');
+    button.id = "toggle-upgrades-button";
+    button.onclick = toggleUpgrades;
+    container.appendChild(button);
+
+    const label = document.createElement('label');
+    label.htmlFor = "toggle-upgrades-button";
+    label.id = "toggle-upgrades-label";
+    label.innerText = "show upgrades";
+    container.appendChild(label);
+}
+
 function toggleUpgrades() {
     Array.from(document.getElementsByClassName("card-cost-container")).forEach(toggleHidden);
     Array.from(document.getElementsByClassName("card-description-container")).forEach(toggleHidden);
@@ -9,11 +27,11 @@ function toggleUpgrades() {
         }
     });
 
-    const button = document.getElementById('toggle-upgrades');
-    if (button.innerText === "hide upgrades") {
-        button.innerText = "show upgrades";
+    const button = document.getElementById('toggle-upgrades-button');
+    if (button.style.backgroundImage === 'url("/tickbox_ticked.png")') {
+        button.style.backgroundImage = 'url("/tickbox_unticked.png")';
     } else {
-        button.innerText = "hide upgrades";
+        button.style.backgroundImage = 'url("/tickbox_ticked.png")';
     }
 }
 

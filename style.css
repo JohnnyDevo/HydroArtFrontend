@@ -73,7 +73,7 @@ body {
     color: white;
 }
 
-.navigation {
+.navigation, #toggle-upgrades {
     display: inline-block;
     vertical-align: middle;
     text-align: center;
@@ -84,7 +84,7 @@ body {
     width: fit-content;
 }
 
-.navigation, .navigation:hover, .navigation:visited, .navigation:active {
+.navigation, .navigation:hover, .navigation:visited, .navigation:active, #toggle-upgrades-label {
     color: aquamarine;
     text-decoration: none;
 }
@@ -122,8 +122,20 @@ body {
     height: 1.4rem;
 }
 
-#result {
-    color: red;
+#toggle-upgrades {
+    display: flex;
+    align-items: center;
+    
+}
+
+#toggle-upgrades-button {
+    background: none;
+    border: none;
+    background-image: url('/tickbox_unticked.png');
+    background-size: 48px;
+    background-position: center;
+    width: 30px;
+    height: 30px;
 }
 
 #cards-container {
@@ -134,7 +146,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    min-height: fit-content;
+    margin: 20px 10px;
 }
 
 .card-wrapper, .single-card-wrapper {
@@ -143,7 +155,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
 }
 
 .card {
@@ -160,7 +171,7 @@ body {
     --size: calc(var(--preview-size) * var(--size-multiplier));
     top: calc(75px * calc(var(--size-multiplier) * calc(1 - var(--preview-size))));
     position: absolute;
-    left: calc(-100% * var(--preview-size));
+    left: calc(-95% * var(--preview-size));
     display: none;
     --z-modifier: calc(100 + var(--base-z));
     font-family: 'Kreon', serif;

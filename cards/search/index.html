@@ -8,6 +8,8 @@
 
         <script type="text/javascript" src="/js/check-login.js"></script>
         <script type="text/javascript">onLoadPage();</script>
+        <script type="text/javascript" src="/js/toggle-upgrades.js"></script>
+        
         <TITLE>Card Search</TITLE>
         <link href='/style.css' rel='stylesheet'>
         <script type="text/javascript" src="/js/get-cards.js"></script>
@@ -17,7 +19,8 @@
 
     <BODY onload="doSearch()">
         <div id="page-container">
-            <div id="header"><div id="context-buttons"></div><nav id="nav-bar"></nav></div>
+            <div id="header"><div id="context-buttons"><img src="/favicon.ico" id="fox"></div><nav id="nav-bar"></nav></div>
+            <script type="text/javascript">makeButton();</script>
             <div id="content-wrap">
 
                 <H1>results view</H1>
