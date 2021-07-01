@@ -7,7 +7,6 @@
         <meta content="utf-8" http-equiv="encoding">
 
         <script type="text/javascript" src="/js/check-login.js"></script>
-        <script type="text/javascript">onLoadPage();</script>
         <script type="text/javascript" src="/js/toggle-upgrades.js"></script>
 
         <TITLE>Cards</TITLE>
@@ -17,13 +16,15 @@
         <link href="https://fonts.googleapis.com/css2?family=Kreon&display=swap" rel="stylesheet"> 
     </HEAD>
 
-    <BODY onload="getAllCards()">
+    <BODY onload="onLoadPage();getAllCards()">
         <div id="page-container">
             <div id="header"><div id="context-buttons"><img src="/favicon.ico" id="fox"></div><nav id="nav-bar"></nav></div>
             <script type="text/javascript">makeButton();</script>
             <div id="content-wrap">
 
-                <div id="cards-container"></div>
+                <div id="cards-container">
+                    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </div>
                 
             </div>
             <nav id="footer"></nav>

@@ -7,9 +7,8 @@
         <meta content="utf-8" http-equiv="encoding">
 
         <script type="text/javascript" src="/js/check-login.js"></script>
-        <script type="text/javascript">onLoadPage();</script>
         <script type="text/javascript" src="/js/toggle-upgrades.js"></script>
-        
+
         <TITLE>Card Search</TITLE>
         <link href='/style.css' rel='stylesheet'>
         <script type="text/javascript" src="/js/get-cards.js"></script>
@@ -17,19 +16,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Kreon&display=swap" rel="stylesheet"> 
     </HEAD>
 
-    <BODY onload="doSearch()">
+    <BODY onload="onLoadPage();doSearch()">
         <div id="page-container">
             <div id="header"><div id="context-buttons"><img src="/favicon.ico" id="fox"></div><nav id="nav-bar"></nav></div>
             <script type="text/javascript">makeButton();</script>
             <div id="content-wrap">
 
-                <H1>results view</H1>
-                <p id="search-text"></p>
+                <div id="cards-container">
+                    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </div>
 
-                <script type="text/javascript" src="/js/toggle-upgrades.js"></script>
-                <button id="toggle-upgrades" onclick="toggleUpgrades()">show upgrades</button>
-
-                <div id="cards-container"></div>
             </div>
             <nav id="footer"></nav>
         </div>

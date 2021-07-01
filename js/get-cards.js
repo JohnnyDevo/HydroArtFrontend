@@ -30,7 +30,6 @@ async function doSearch() {
     if (!search) {
         return window.location.replace('/cards/index.html');
     }
-    document.getElementById('search-text').innerText = `you searched for: ${search}`;
     const destination = 'http://localhost:3000/cards/search?';
     const query = `search=${encodeURIComponent(search)}`;
 
@@ -44,6 +43,7 @@ async function doSearch() {
     });
 
     populateResults(await response.json());
+    document.getElementById('searchBar').value = search;
 }
 
 async function getSingleCard() {
@@ -68,6 +68,9 @@ async function getSingleCard() {
 
 function populateResults(results) {
     const resultsElement = document.getElementById('cards-container');
+    while (resultsElement.firstChild) {
+        resultsElement.removeChild(resultsElement.firstChild);
+    }
     for (const card in results.cards) {
         let art;
         if (results.arts) {
