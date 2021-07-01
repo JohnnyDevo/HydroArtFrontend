@@ -260,13 +260,18 @@ function makeSingleCardView(cardInfo) {
         }
     }
 
+    const cardWrapper = document.createElement("div");
+    cardWrapper.className = "single-card-wrapper";
+
     const card = makeCard(cardInfo.card, defaultArt, false, false);
     const defaultArtElement = card.getElementsByClassName('card-art')[0];
+    cardWrapper.appendChild(card);
+
     artsArray.forEach(art => {
         card.prepend(art);
     });
     artsArray.push(defaultArtElement);
-    resultsElement.appendChild(card);
+    resultsElement.appendChild(cardWrapper);
 
     if (cardInfo.keywords) {
         const container = document.createElement("div");

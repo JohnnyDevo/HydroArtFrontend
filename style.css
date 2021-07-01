@@ -137,7 +137,7 @@ body {
     min-height: fit-content;
 }
 
-.card-wrapper {
+.card-wrapper, .single-card-wrapper {
     width: calc(675px * var(--size-multiplier));
     height: calc(950px * var(--size-multiplier));
     display: flex;
