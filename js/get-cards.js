@@ -73,6 +73,8 @@ function populateResults(results) {
         if (results.arts) {
             art = results.arts.find(art => art.card_id === results.cards[card].id);
         }
+        const cardWrapper = document.createElement("div");
+        cardWrapper.className = "card-wrapper";
         const cardElement = makeCard(results.cards[card], art, false, true);
         if (results.cards[card].swaps_to) {
             art = null;
@@ -82,7 +84,8 @@ function populateResults(results) {
             const previewElement = makeCard(results.swaps.find(swapCard => swapCard.id === results.cards[card].swaps_to), art, true, false);
             cardElement.prepend(previewElement);
         }
-        resultsElement.appendChild(cardElement);
+        cardWrapper.appendChild(cardElement);
+        resultsElement.appendChild(cardWrapper);
     }
 }
 
@@ -98,10 +101,7 @@ function makeCard(card, art, isPreview, makeLink) {
     } else {
         card.subtype = `/${card.subtype}`;
     }
-    if (card.cost == -1) {
-        card.cost = "X";
-    }
-    if (card.rarity === "BASIC" || card.rarity === "STARTER") {
+    if (card.rarity === "BASIC" || card.rarity === "STARTER" || card.rarity === "SPECIAL") {
         card.rarity = "COMMON";
     }
 
@@ -109,11 +109,19 @@ function makeCard(card, art, isPreview, makeLink) {
 
     if (art) {
         url = `data:image/png;base64,${art.encode}`;
-        const artElement = createImageElement("art", url);
-        cardElement.appendChild(artElement);
+    } else {
+        url = '/portraits/noart.png';
     }
+    const artElement = createImageElement("art", url);
+    cardElement.appendChild(artElement);
 
-    url = `/portraits/${card.type}.png`;
+    if (card.id === "hydrologistmod:RazorIce") {
+        url = '/portraits/colorless_attack.png';
+    } else if (card.id === "hydrologistmod:Raincloud") {
+        url = '/portraits/colorless_skill.png';
+    } else {
+        url = `/portraits/${card.type}.png`;
+    }
     const portraitElement = createImageElement("portrait", url);
     cardElement.appendChild(portraitElement);
     
@@ -132,12 +140,14 @@ function makeCard(card, art, isPreview, makeLink) {
     cardElement.appendChild(bannerElement);
     
     if (card.cost > -2) {
+        if (card.cost == -1) {
+            card.cost = "X";
+        }
+
         url = `/portraits${card.subtype}/energy.png`;
         const energyElement = createImageElement("energy-symbol", url)
         cardElement.appendChild(energyElement);
-    }
 
-    if (card.cost > -2) {
         const costTextContainer = createDescriptionElement("cost", card.cost);
         cardElement.appendChild(costTextContainer);
 
@@ -192,7 +202,7 @@ const artsArray = [];
 
 function changeArt(next) {
     for (let i = 0; i < artsArray.length; ++i) {
-        if (artsArray[i].style.display === 'block') {
+        if (artsArray[i].style.display !== 'none') {
             artsArray[i].style.display = 'none';
             let nextArt = i;
             if (next) {
@@ -223,23 +233,22 @@ function showPreviousArt() {
 function makeSingleCardView(cardInfo) {
 
     const resultsElement = document.getElementById('cards-container');
-    const card = makeCard(cardInfo.card, null, false, false);
     resultsElement.style.setProperty('--size-multiplier', "calc(1.5 * var(--base-size))");
-    resultsElement.appendChild(card);
+
+    let defaultArt;
 
     if (cardInfo.arts) {
         for (const artInfo in cardInfo.arts) {
-            let url = `data:image/png;base64,${cardInfo.arts[artInfo].encode}`;
-            const artElement = createImageElement("art", url);
-            card.appendChild(artElement);
-            artsArray.push(artElement);
             if (cardInfo.arts[artInfo].id !== cardInfo.defaultArtID) {
+                let url = `data:image/png;base64,${cardInfo.arts[artInfo].encode}`;
+                const artElement = createImageElement("art", url);
+                artsArray.push(artElement);
                 artElement.style.display = "none";
             } else {
-                artElement.style.display = "block";
+                defaultArt = cardInfo.arts[artInfo];
             }
         }
-        if (artsArray.length > 1) {
+        if (artsArray.length > 0) {
             const showPreviousArtButton = document.createElement("button");
             showPreviousArtButton.id = "show-previous-art";
             showPreviousArtButton.addEventListener('click', showPreviousArt);
@@ -250,6 +259,14 @@ function makeSingleCardView(cardInfo) {
             resultsElement.append(showNextArtButton);
         }
     }
+
+    const card = makeCard(cardInfo.card, defaultArt, false, false);
+    const defaultArtElement = card.getElementsByClassName('card-art')[0];
+    artsArray.forEach(art => {
+        card.prepend(art);
+    });
+    artsArray.push(defaultArtElement);
+    resultsElement.appendChild(card);
 
     if (cardInfo.keywords) {
         const container = document.createElement("div");
