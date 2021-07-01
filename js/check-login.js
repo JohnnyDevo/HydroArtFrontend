@@ -34,8 +34,7 @@ function makeHeader(name) {
         link = '/profile/index.html';
     }
 
-    document.getElementById('header').innerHTML = `
-        <img src="/favicon.ico" id="fox">
+    document.getElementById('nav-bar').innerHTML = `
         <a class="navigation" href="/index.html">Home</a>
         <a class="navigation" href="/cards/index.html">Cards</a>
         <form id="search" action="/cards/search/index.html" method="GET">
@@ -44,6 +43,11 @@ function makeHeader(name) {
         </form>
         <a id="user" class="navigation" href="${link}">${label}</a>
     `;
+
+    const icon = document.createElement("img");
+    icon.src = "/favicon.ico";
+    icon.id = "fox";
+    document.getElementById('context-buttons').appendChild(icon);
 }
 
 function makeFooter() {

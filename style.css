@@ -7,8 +7,22 @@
     border: none;
     padding: 0;
     display: block;
-    text-align: right;
     z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nav-bar {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#context-buttons {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 0.8rem;
 }
 
 #footer {
@@ -76,17 +90,14 @@ body {
 }
 
 #search {
-    display: inline-block;
     width: 200px;
     max-width: 50%;
-    height: 1.2rem;
-    vertical-align: middle;
 }
 
 #searchBar {
     display: inline;
     width: 70%;
-    margin: auto;
+    margin-left: 0.8rem;
 }
 
 #submitButton {
@@ -107,9 +118,6 @@ body {
 }
 
 #fox {
-    position: absolute;
-    left: 0.6rem;
-    top: 0.5rem;
     width: 1.4rem;
     height: 1.4rem;
 }
