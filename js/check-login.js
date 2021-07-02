@@ -36,6 +36,7 @@ function makeHeader(name) {
 
     document.getElementById('nav-bar').innerHTML = `
         <a class="navigation" href="/index.html">Home</a>
+        <a class="navigation" href="/art/index.html">Art</a>
         <a class="navigation" href="/cards/index.html">Cards</a>
         <form id="search" action="/cards/search/index.html" method="GET">
             <input type="text" id="searchBar" name="search" placeholder="card search...">
