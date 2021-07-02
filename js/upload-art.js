@@ -1,13 +1,22 @@
 async function uploadArt(form) {
     const destination = `${API_URL}:${API_PORT}/art`;
 
-    const response = await fetch(destination, {
-        method: 'POST',
-        redirect: 'manual',
-        referrerPolicy: 'no-referrer',
-        body: new FormData(form),
-        credentials: 'include'
-    });
-    const artInfo = await response.json();
-    document.getElementById('reflect').src = `data:image/png;base64,${artInfo.encode}`
+    try {
+        const response = await fetch(destination, {
+            method: 'POST',
+            redirect: 'manual',
+            referrerPolicy: 'no-referrer',
+            body: new FormData(form),
+            credentials: 'include'
+        });
+        if (response.ok) {
+            const artInfo = await response.json();
+            document.getElementById('reflect').src = `data:image/png;base64,${artInfo.encode}`;
+            //generate link to the card
+        } else {
+            //render the reason why the submission was rejected
+        }
+    } catch (error) {
+        //render some indication that an error happened that wasn't a failed submission
+    }
 }

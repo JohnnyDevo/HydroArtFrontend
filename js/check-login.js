@@ -1,25 +1,29 @@
 async function onLoadPage(redirect) {
     const destination = `${API_URL}:${API_PORT}/users`;
 
-    const response = await fetch(destination, {
-        method: 'GET',
-        redirect: 'manual',
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
-        },
-        referrerPolicy: 'no-referrer',
-        credentials: 'include'
-    });
-
     let username;
-    if (response.ok) {
-        const user = await response.json();
-        username = user.username;
-        if (!user.username) {
-            if (redirect) {
-                window.location.replace('/signin/index.html');
+    try {
+        const response = await fetch(destination, {
+            method: 'GET',
+            redirect: 'manual',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            referrerPolicy: 'no-referrer',
+            credentials: 'include'
+        });
+    
+        if (response.ok) {
+            const user = await response.json();
+            username = user.username;
+            if (!user.username) {
+                if (redirect) {
+                    window.location.replace('/signin/index.html');
+                }
             }
         }
+    } catch (error) {
+        //render something in the browser to let the user know something happened
     }
 
     makeHeader(username);

@@ -1,16 +1,20 @@
 async function getAllCards() {
     const destination = `${API_URL}:${API_PORT}/cards`;
 
-    const response = await fetch(destination, {
-        method: 'GET',
-        redirect: 'manual',
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
-        },
-        referrerPolicy: 'no-referrer'
-    });
-
-    populateResults(await response.json());
+    try {
+        const response = await fetch(destination, {
+            method: 'GET',
+            redirect: 'manual',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            referrerPolicy: 'no-referrer'
+        });
+    
+        populateResults(await response.json());
+    } catch (error) {
+        //render something in the browser to let the user know something happened
+    }
 }
 
 function getQueryText(paramName) {
@@ -33,16 +37,20 @@ async function doSearch() {
     const destination = `${API_URL}:${API_PORT}/cards/search?`;
     const query = `search=${encodeURIComponent(search)}`;
 
-    const response = await fetch(`${destination}${query}`, {
-        method: 'GET',
-        redirect: 'manual',
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
-        },
-        referrerPolicy: 'no-referrer'
-    });
-
-    populateResults(await response.json());
+    try {
+        const response = await fetch(`${destination}${query}`, {
+            method: 'GET',
+            redirect: 'manual',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            referrerPolicy: 'no-referrer'
+        });
+    
+        populateResults(await response.json());
+    } catch (error) {
+        //render something in the browser to let the user know something happened
+    }
     document.getElementById('searchBar').value = search;
 }
 
@@ -53,17 +61,21 @@ async function getSingleCard() {
     }
     const destination = `${API_URL}:${API_PORT}/cards/${cardID}`;
 
-    const response = await fetch(destination, {
-        method: 'GET',
-        redirect: 'manual',
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
-        },
-        referrerPolicy: 'no-referrer'
-    });
-
-    const result = await response.json();
-    makeSingleCardView(result);
+    try {
+        const response = await fetch(destination, {
+            method: 'GET',
+            redirect: 'manual',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            referrerPolicy: 'no-referrer'
+        });
+    
+        const result = await response.json();
+        makeSingleCardView(result);
+    } catch (error) {
+        //render something in the browser to let the user know something happened
+    }
 }
 
 function populateResults(results) {

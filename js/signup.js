@@ -9,20 +9,24 @@ async function signup(form) {
         contact_info: form.contact_info.value
     };
 
-    const response = await fetch(destination, {
-        method: 'POST',
-        redirect: 'manual',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        },
-        referrerPolicy: 'no-referrer',
-        body: new URLSearchParams(data),
-        credentials: 'include'
-    });
     try {
-        const result = JSON.parse(await response.text());
-        window.location.href = '/signin/index.html';
+        const response = await fetch(destination, {
+            method: 'POST',
+            redirect: 'manual',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            referrerPolicy: 'no-referrer',
+            body: new URLSearchParams(data),
+            credentials: 'include'
+        });
+        if (response.ok) {
+            window.location.href = `/signin/index.html`;
+            //TODO: indicate successful sign up
+        } else {
+            //TODO: render reason why signup failed
+        }
     } catch (error) {
-        
+        //render some sort of indication that there was an error, and not a bad sign up
     }
 }
