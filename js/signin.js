@@ -1,5 +1,5 @@
 async function signin(form) {
-    const destination = 'http://localhost:3000/login';
+    const destination = `${API_URL}:${API_PORT}/login`;
 
     const data = {
         username: form.username.value,

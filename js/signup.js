@@ -1,5 +1,5 @@
 async function signup(form) {
-    const destination = 'http://localhost:3000/users';
+    const destination = `${API_URL}:${API_PORT}/users`;
 
     const data = {
         username: form.username.value,

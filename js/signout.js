@@ -1,5 +1,5 @@
 async function signout() {
-    const destination = 'http://localhost:3000/users/logout';
+    const destination = `${API_URL}:${API_PORT}/users/logout`;
 
     const response = await fetch(destination, {
         method: 'POST',

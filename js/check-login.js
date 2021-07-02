@@ -1,5 +1,5 @@
 async function onLoadPage(redirect) {
-    const destination = "http://localhost:3000/users"
+    const destination = `${API_URL}:${API_PORT}/users`;
 
     const response = await fetch(destination, {
         method: 'GET',

@@ -1,5 +1,5 @@
 async function uploadArt(form) {
-    const destination = 'http://localhost:3000/art';
+    const destination = `${API_URL}:${API_PORT}/art`;
 
     const response = await fetch(destination, {
         method: 'POST',
