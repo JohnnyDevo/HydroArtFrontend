@@ -347,7 +347,7 @@ body {
     z-index: 1;
 }
 
-.art-container {
+#art-container {
     --base-size: 0.5;
     --size-multiplier: var(--base-size);
     --minimum: calc(900px * var(--size-multiplier));
