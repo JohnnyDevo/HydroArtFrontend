@@ -414,6 +414,57 @@ body {
     height: 1.75em;
 }
 
+#artist-container {
+    display: flex;
+    justify-content: center;
+
+}
+
+#artist-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 60%;
+}
+
+#artist-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+#artist-table th, #artist-table td {
+    padding: 12px 15px;
+}
+
+#artist-table a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color:rgb(223, 175, 86);
+}
+
+#artist-table td {
+    border-left: 1px solid #000d55;
+}
+
+#artist-table tbody tr {
+    border-bottom: 1px solid #000d55;
+}
+
+#artist-table tbody tr:nth-of-type(even) {
+    background-color: #313681;
+}
+
+#artist-table tbody tr:nth-of-type(odd) {
+    background-color: #398497;
+}
+
+#artist-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
 .lds-spinner {
     color: official;
     display: inline-block;
