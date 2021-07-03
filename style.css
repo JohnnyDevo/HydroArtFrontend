@@ -365,8 +365,8 @@ body {
     align-items: center;
     padding: 8px;
     margin: 8px;
-    border: 2px solid aquamarine;
-    background-color: darkcyan;
+    border: 2px solid rgb(98, 196, 163);
+    background-color: rgb(12, 104, 104);
     border-radius: 10px;
 }
 
