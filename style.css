@@ -375,6 +375,7 @@ body {
     height: calc(380px * var(--size-multiplier));
     border: 6px solid black;
     border-radius: 7px;
+    background-color: white;
 }
 
 .artist-info-container {
