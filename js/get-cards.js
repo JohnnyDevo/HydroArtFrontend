@@ -157,6 +157,7 @@ function makeCard(card, art, isPreview, makeLink) {
     if (card.cost > -2) {
         if (card.cost == -1) {
             card.cost = "X";
+            card.upgraded_cost = "X";
         }
 
         url = `/portraits${card.subtype}/energy.png`;
