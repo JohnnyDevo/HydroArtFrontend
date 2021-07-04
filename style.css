@@ -124,15 +124,16 @@ a.navigation {
     z-index: 1;
 }
 
-.nav-dropdown a {
+.nav-dropdown a, .nav-dropdown span {
     color: aquamarine;
     padding: 0.8em;
     text-decoration: none;
     display: block;
 }
 
-.nav-dropdown a:hover {
+.nav-dropdown a:hover, .nav-dropdown span:hover {
     background-color: rgb(77, 77, 77);
+    cursor: pointer;
 }
 
 .navigation:hover .nav-dropdown {

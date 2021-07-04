@@ -31,14 +31,37 @@ async function onLoadPage(redirect) {
 }
 
 function makeHeader(name) {
-    let label = 'Sign In';
-    let link = '/signin';
+    let elem;
     if (name) {
-        label = name;
-        link = '/profile';
-    }
+        elem = document.createElement("div");
 
-    document.getElementById('nav-bar').innerHTML = `
+        const button = document.createElement("button");
+        button.className = "nav-button";
+        button.innerText = name;
+        elem.appendChild(button);
+
+        const dropdown = document.createElement("div");
+        dropdown.className = "nav-dropdown";
+        elem.appendChild(dropdown);
+
+        const profileLink = document.createElement("a");
+        profileLink.href = "/profile";
+        profileLink.innerText = "My Profile";
+        dropdown.appendChild(profileLink);
+
+        const signOut = document.createElement("span");
+        signOut.onclick = signout;
+        signOut.innerText = "Sign Out";
+        dropdown.appendChild(signOut);
+    } else {
+        elem = document.createElement("a");
+        elem.href = "/signin";
+        elem.innerText = "Sign In";
+    }
+    elem.className = "navigation";
+
+    const navBar = document.getElementById('nav-bar');
+    navBar.innerHTML = `
         <a class="navigation" href="/">Home</a>
         <div class="navigation">
             <button class="nav-button">Art</button>
@@ -52,8 +75,8 @@ function makeHeader(name) {
             <input type="text" id="searchBar" name="search" placeholder="card search...">
             <button type="submit" id="submitButton"><img id="searchIcon" src="/search-icon.png"></button>
         </form>
-        <a id="user" class="navigation" href="${link}">${label}</a>
     `;
+    navBar.appendChild(elem);
 }
 
 function makeFooter() {
@@ -61,4 +84,25 @@ function makeFooter() {
         <a class="navigation" href="/aboutme">About Me</a>
         <a class="navigation" href="/contactme">Contact Me</a>
     `;
+}
+
+async function signout() {
+    const destination = `${API_URL}:${API_PORT}/users/logout`;
+
+    try {
+        const response = await fetch(destination, {
+            method: 'POST',
+            redirect: 'manual',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            referrerPolicy: 'no-referrer',
+            credentials: 'include'
+        });
+        if (response.ok) {
+            window.location.href = '/';
+        }
+    } catch (error) {
+        //render something to indicate an error occured
+    }
 }
