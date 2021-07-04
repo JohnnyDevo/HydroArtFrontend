@@ -57,7 +57,7 @@ function makeArtElement(art) {
     info.appendChild(infoContainer);
 
     const artistLink = document.createElement("a");
-    artistLink.href = `/art/artists/index.html?artistID=${art.user_id}`
+    artistLink.href = `/art/submissions/index.html?artistID=${art.user_id}`
     artistLink.className = "artist-view-link";
     artistLink.innerText = art.credits_name;
     infoContainer.appendChild(artistLink);
