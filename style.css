@@ -388,6 +388,7 @@ body {
     display: block;
     margin: 20px 0;
     font-weight: bold;
+    color:rgb(223, 175, 86);
 }
 
 .artist-info-container a:hover {
