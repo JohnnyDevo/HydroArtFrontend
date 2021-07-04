@@ -38,7 +38,7 @@ async function getArt() {
     const card = getQueryText("cardID");
     const artist = getQueryText("artistID");
     if (!card && !artist) {
-        return window.location.replace('/art/index.html');
+        return window.location.replace('/art');
     }
 
     let destination = `${API_URL}:${API_PORT}/art`;
@@ -105,7 +105,7 @@ function makeArtElement(art) {
     info.appendChild(infoContainer);
 
     const artistLink = document.createElement("a");
-    artistLink.href = `/art/submissions/index.html?artistID=${art.user_id}`
+    artistLink.href = `/art/submissions?artistID=${art.user_id}`
     artistLink.className = "artist-view-link";
     artistLink.innerText = art.credits_name;
     infoContainer.appendChild(artistLink);
@@ -126,7 +126,7 @@ function makeArtElement(art) {
     cardLinkContainer.appendChild(cardIcon);
 
     const cardName = document.createElement("a");
-    cardName.href = `/cards/view/index.html?cardID=${art.card_id}`;
+    cardName.href = `/cards/view?cardID=${art.card_id}`;
     cardName.classname = "art-card-name";
     cardName.innerText = art.card_name;
     cardLinkContainer.appendChild(cardName);

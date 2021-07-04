@@ -21,7 +21,7 @@ async function signup(form) {
             credentials: 'include'
         });
         if (response.ok) {
-            window.location.href = `/signin/index.html`;
+            window.location.href = `/signin`;
             //TODO: indicate successful sign up
         } else {
             //TODO: render reason why signup failed

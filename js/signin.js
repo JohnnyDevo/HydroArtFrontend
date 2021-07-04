@@ -19,7 +19,7 @@ async function signin(form) {
         });
         
         if (response.ok) {
-            window.location.href = '/profile/index.html';
+            window.location.href = '/profile';
         } else {
             //TODO: handle incorrect logins
         }

@@ -65,7 +65,7 @@ function createRow(artist) {
     row.appendChild(artistName);
 
     const artistNameLink = document.createElement("a");
-    artistNameLink.href = `/art/submissions/index.html?artistID=${artist.id}`;
+    artistNameLink.href = `/art/submissions?artistID=${artist.id}`;
     artistNameLink.innerText = artist.credits_name;
     artistName.appendChild(artistNameLink);
 

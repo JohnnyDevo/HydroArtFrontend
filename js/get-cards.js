@@ -32,7 +32,7 @@ function getQueryText(paramName) {
 async function doSearch() {
     const search = getQueryText('search');
     if (!search) {
-        return window.location.replace('/cards/index.html');
+        return window.location.replace('/cards');
     }
     const destination = `${API_URL}:${API_PORT}/cards/search?`;
     const query = `search=${encodeURIComponent(search)}`;
@@ -57,7 +57,7 @@ async function doSearch() {
 async function getSingleCard() {
     const cardID = getQueryText('cardID');
     if (!cardID) {
-        return window.location.replace('/cards/index.html');
+        return window.location.replace('/cards');
     }
     const destination = `${API_URL}:${API_PORT}/cards/${cardID}`;
 
@@ -186,7 +186,7 @@ function makeCard(card, art, isPreview, makeLink) {
 
     if (makeLink) {
         const clickableLink = document.createElement("a");
-        clickableLink.href = `/cards/view/index.html?cardID=${card.id}`;
+        clickableLink.href = `/cards/view?cardID=${card.id}`;
         const linkSpan = document.createElement("span");
         linkSpan.className = "card-link";
         clickableLink.appendChild(linkSpan);

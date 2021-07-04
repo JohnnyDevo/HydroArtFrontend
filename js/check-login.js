@@ -18,7 +18,7 @@ async function onLoadPage(redirect) {
             username = user.username;
             if (!user.username) {
                 if (redirect) {
-                    window.location.replace('/signin/index.html');
+                    window.location.replace('/signin');
                 }
             }
         }
@@ -32,17 +32,17 @@ async function onLoadPage(redirect) {
 
 function makeHeader(name) {
     let label = 'Sign In';
-    let link = '/signin/index.html';
+    let link = '/signin';
     if (name) {
         label = name;
-        link = '/profile/index.html';
+        link = '/profile';
     }
 
     document.getElementById('nav-bar').innerHTML = `
-        <a class="navigation" href="/index.html">Home</a>
-        <a class="navigation" href="/art/index.html">Art</a>
-        <a class="navigation" href="/cards/index.html">Cards</a>
-        <form id="search" action="/cards/search/index.html" method="GET">
+        <a class="navigation" href="/">Home</a>
+        <a class="navigation" href="/art">Art</a>
+        <a class="navigation" href="/cards">Cards</a>
+        <form id="search" action="/cards/search" method="GET">
             <input type="text" id="searchBar" name="search" placeholder="card search...">
             <button type="submit" id="submitButton"><img id="searchIcon" src="/search-icon.png"></button>
         </form>
@@ -52,7 +52,7 @@ function makeHeader(name) {
 
 function makeFooter() {
     document.getElementById('footer').innerHTML = `
-        <a class="navigation" href="/aboutme/index.html">About Me</a>
-        <a class="navigation" href="/contactme/index.html">Contact Me</a>
+        <a class="navigation" href="/aboutme">About Me</a>
+        <a class="navigation" href="/contactme">Contact Me</a>
     `;
 }

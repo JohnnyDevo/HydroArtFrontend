@@ -12,7 +12,7 @@ async function signout() {
             credentials: 'include'
         });
         if (response.ok) {
-            window.location.href = '/index.html';
+            window.location.href = '/';
         }
     } catch (error) {
         //render something to indicate an error occured
