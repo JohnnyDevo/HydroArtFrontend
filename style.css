@@ -602,6 +602,7 @@ a.navigation {
 #external-link {
     padding-top: 100px;
     padding-bottom: 40px;
+    font-size: 150%;
 }
 
 .lds-spinner {
