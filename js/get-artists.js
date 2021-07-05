@@ -73,7 +73,8 @@ function createRow(artist) {
     row.appendChild(artistPage);
 
     const artistPageLink = document.createElement("a");
-    artistPageLink.href = artist.credits_url;
+    artistPageLink.href = `/external/?link=${encodeURIComponent(artist.credits_url)}`;
+    artistPageLink.target = "_blank";
     artistPageLink.innerText = artist.credits_url;
     artistPage.appendChild(artistPageLink);
 

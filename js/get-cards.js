@@ -386,8 +386,8 @@ function populateCreditsInfo(artElement) {
     creditsInfoName.innerHTML = artElement.getElementsByClassName("art-artist-name")[0].innerHTML;
     const url = artElement.getElementsByClassName("art-artist-url")[0].innerHTML;
     creditsInfoUrl.innerHTML = url;
-    creditsInfoUrl.href = url;
-    
+    creditsInfoUrl.href = `/external/?link=${encodeURIComponent(url)}`;
+    creditsInfoUrl.target = "_blank";
 }
 
 function createKeywordElement(name, description) {

@@ -107,13 +107,14 @@ function makeArtElement(art) {
     const artistLink = document.createElement("a");
     artistLink.href = `/art/submissions?artistID=${art.user_id}`
     artistLink.className = "artist-view-link";
-    artistLink.innerText = art.credits_name;
+    artistLink.innerHTML = art.credits_name;
     infoContainer.appendChild(artistLink);
 
     const artistPage = document.createElement("a");
-    artistPage.href = art.credits_url;
+    artistPage.href = `/external/?link=${encodeURIComponent(art.credits_url)}`;
+    artistPage.target = "_blank";
     artistPage.className = "artist-page-link";
-    artistPage.innerText = art.credits_url;
+    artistPage.innerHTML = art.credits_url;
     infoContainer.appendChild(artistPage);
 
     const cardLinkContainer = document.createElement("div");
