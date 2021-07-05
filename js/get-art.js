@@ -127,7 +127,7 @@ function makeArtElement(art) {
     cardLinkContainer.appendChild(cardIcon);
 
     const cardName = document.createElement("a");
-    cardName.href = `/cards/view?cardID=${art.card_id}`;
+    cardName.href = `/cards/view?cardID=${art.card_id}&artID=${art.id}`;
     cardName.classname = "art-card-name";
     cardName.innerText = art.card_name;
     cardLinkContainer.appendChild(cardName);

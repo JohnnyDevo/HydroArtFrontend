@@ -257,6 +257,7 @@ function showPreviousArt() {
 }
 
 function makeSingleCardView(cardInfo) {
+    const artID = getQueryText("artID");
 
     const resultsElement = document.getElementById('cards-container');
     resultsElement.style.setProperty('--size-multiplier', "calc(1.5 * var(--base-size))");
@@ -285,6 +286,10 @@ function makeSingleCardView(cardInfo) {
                 artElement.appendChild(artistUrl);
 
                 artsArray.push(artElement);
+
+                if (artID == cardInfo.arts[artInfo].id) {
+                    artElement.style.display = "block";
+                }
             } else {
                 defaultArt = cardInfo.arts[artInfo];
 
@@ -341,6 +346,9 @@ function makeSingleCardView(cardInfo) {
 
     const card = makeCard(cardInfo.card, defaultArt, false, false);
     const defaultArtElement = card.getElementsByClassName('card-art')[0];
+    if (artID && artID != defaultArt.id) {
+        defaultArtElement.style.display = "none";
+    }
     cardWrapper.appendChild(card);
 
     if (defaultNameElement) {
