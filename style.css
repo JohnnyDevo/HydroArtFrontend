@@ -530,6 +530,7 @@ a.navigation {
     width: max-content;
     height: 64px;
     transform: translateX(-50%);
+    text-align: center;
 }
 
 #show-next-art, #show-previous-art {
@@ -570,7 +571,6 @@ a.navigation {
 }
 
 #credits-info-name-container, #credits-info-url {
-    text-align: center;
     position: relative;
     padding: 0 14px;
     padding-top: 7px;
