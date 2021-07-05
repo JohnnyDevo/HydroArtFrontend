@@ -74,6 +74,7 @@ async function getSingleCard() {
         const result = await response.json();
         makeSingleCardView(result);
     } catch (error) {
+        console.log(error);
         //render something in the browser to let the user know something happened
     }
 }
@@ -233,7 +234,16 @@ function changeArt(next) {
                 nextArt = 0;
             }
             artsArray[nextArt].style.display = 'block';
+            populateCreditsInfo(artsArray[nextArt]);
             break;
+        }
+    }
+}
+
+function getActiveArt() {
+    for (let i = 0; i < artsArray.length; ++i) {
+        if (artsArray[i].style.display !== 'none') {
+            return artsArray[i];
         }
     }
 }
@@ -252,18 +262,68 @@ function makeSingleCardView(cardInfo) {
     resultsElement.style.setProperty('--size-multiplier', "calc(1.5 * var(--base-size))");
 
     let defaultArt;
+    let defaultNameElement;
+    let defaultUrlElement;
+    let creditsInfoContainer;
 
     if (cardInfo.arts) {
         for (const artInfo in cardInfo.arts) {
             if (cardInfo.arts[artInfo].id !== cardInfo.defaultArtID) {
                 let url = `data:image/png;base64,${cardInfo.arts[artInfo].encode}`;
                 const artElement = createImageElement("art", url);
-                artsArray.push(artElement);
                 artElement.style.display = "none";
+
+                const artistName = document.createElement("span");
+                artistName.innerHTML = cardInfo.arts[artInfo].credits_name;
+                artistName.style.display = "none";
+                artistName.className = "art-artist-name";
+                artElement.appendChild(artistName);
+                const artistUrl = document.createElement("span");
+                artistUrl.innerHTML = cardInfo.arts[artInfo].credits_url;
+                artistUrl.style.display = "none";
+                artistUrl.className = "art-artist-url";
+                artElement.appendChild(artistUrl);
+
+                artsArray.push(artElement);
             } else {
                 defaultArt = cardInfo.arts[artInfo];
+
+                defaultNameElement = document.createElement("span");
+                defaultNameElement.innerHTML = cardInfo.arts[artInfo].credits_name;
+                defaultNameElement.style.display = "none";
+                defaultNameElement.className = "art-artist-name";
+
+                defaultUrlElement = document.createElement("span");
+                defaultUrlElement.innerHTML = cardInfo.arts[artInfo].credits_url;
+                defaultUrlElement.style.display = "none";
+                defaultUrlElement.className = "art-artist-url";
             }
         }
+        creditsInfoContainer = document.createElement("div");
+        creditsInfoContainer.id = "credits-info";
+
+        const creditsInfoTop = document.createElement("img");
+        creditsInfoTop.src = "/tips/tipTop.png";
+        creditsInfoTop.id = "credits-info-img-top";
+        creditsInfoContainer.appendChild(creditsInfoTop);
+        
+        const creditsInfoBot = document.createElement("img");
+        creditsInfoBot.src = "/tips/tipBot.png";
+        creditsInfoBot.id = "credits-info-img-bot";
+        creditsInfoContainer.appendChild(creditsInfoBot);
+
+        const creditsInfoNameContainer = document.createElement("div");
+        creditsInfoNameContainer.id = "credits-info-name-container";
+        creditsInfoNameContainer.innerText = "Art by: ";
+        creditsInfoContainer.appendChild(creditsInfoNameContainer);
+        
+        const creditsInfoName = document.createElement("span");
+        creditsInfoName.id = "credits-info-name";
+        creditsInfoNameContainer.appendChild(creditsInfoName);
+
+        const creditsUrl = document.createElement("a");
+        creditsUrl.id = "credits-info-url";
+        creditsInfoContainer.appendChild(creditsUrl);
         if (artsArray.length > 0) {
             const showPreviousArtButton = document.createElement("button");
             showPreviousArtButton.id = "show-previous-art";
@@ -271,8 +331,8 @@ function makeSingleCardView(cardInfo) {
             const showNextArtButton = document.createElement("button");
             showNextArtButton.id = "show-next-art";
             showNextArtButton.addEventListener('click', showNextArt);
-            resultsElement.prepend(showPreviousArtButton);
-            resultsElement.append(showNextArtButton);
+            creditsInfoContainer.prepend(showPreviousArtButton);
+            creditsInfoContainer.append(showNextArtButton);
         }
     }
 
@@ -283,11 +343,21 @@ function makeSingleCardView(cardInfo) {
     const defaultArtElement = card.getElementsByClassName('card-art')[0];
     cardWrapper.appendChild(card);
 
+    if (defaultNameElement) {
+        defaultArtElement.appendChild(defaultNameElement);
+        defaultArtElement.appendChild(defaultUrlElement);
+    }
+
     artsArray.forEach(art => {
         card.prepend(art);
     });
     artsArray.push(defaultArtElement);
     resultsElement.appendChild(cardWrapper);
+
+    if (creditsInfoContainer) {
+        card.prepend(creditsInfoContainer);
+        populateCreditsInfo(getActiveArt());
+    }
 
     if (cardInfo.keywords) {
         const container = document.createElement("div");
@@ -308,6 +378,16 @@ function makeSingleCardView(cardInfo) {
         previewElement.style.display = "block";
         card.prepend(previewElement);
     }
+}
+
+function populateCreditsInfo(artElement) {
+    const creditsInfoName = document.getElementById("credits-info-name");
+    const creditsInfoUrl = document.getElementById("credits-info-url");
+    creditsInfoName.innerHTML = artElement.getElementsByClassName("art-artist-name")[0].innerHTML;
+    const url = artElement.getElementsByClassName("art-artist-url")[0].innerHTML;
+    creditsInfoUrl.innerHTML = url;
+    creditsInfoUrl.href = url;
+    
 }
 
 function createKeywordElement(name, description) {
