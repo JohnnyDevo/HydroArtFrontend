@@ -37,7 +37,7 @@ function makeHeader(name) {
 
         const button = document.createElement("button");
         button.className = "nav-button";
-        button.innerText = name;
+        button.innerHTML = name;
         elem.appendChild(button);
 
         const dropdown = document.createElement("div");
