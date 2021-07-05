@@ -581,6 +581,29 @@ a.navigation {
     color: green;
 }
 
+#external-warning {
+    width: 25vw;
+    margin: 50px auto;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 2px aquamarine solid;
+    font-size: 1.2em;
+    border-radius: 10px;
+    background-color: rgb(12, 104, 104);
+}
+
+#external-warning a {
+    color:rgb(223, 175, 86);
+}
+
+#external-link {
+    padding-top: 100px;
+    padding-bottom: 40px;
+}
+
 .lds-spinner {
     color: official;
     display: inline-block;
