@@ -45,9 +45,10 @@ function populateOptions(results) {
         option.value = card.id;
         option.innerText = card.name;
 
+        selector.appendChild(option);
+
         if (cardID == card.id) {
             selector.value = card.id;
         }
-        selector.appendChild(option);
     }
 }
