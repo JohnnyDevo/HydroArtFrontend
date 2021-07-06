@@ -212,7 +212,7 @@ a.navigation {
 }
 
 .single-card-wrapper {
-    padding: 50px;
+    padding: calc(calc(50px / 0.6) * var(--size-multiplier));
 }
 
 .card {
@@ -344,7 +344,7 @@ a.navigation {
 .keywords-container {
     margin-top: calc(calc(45px / 0.6) * var(--size-multiplier));
     position: absolute;
-    right: -80%;
+    left: 100%;
     font-size: 175%;
     top: 0;
     bottom: 0;
@@ -761,26 +761,34 @@ a.navigation {
     }
 }
 
-@media only screen and (max-width: 775px) {
+@media only screen and (max-width: 815px) {
     #cards-container {
         --base-size: 0.225;
     }
+}
 
+@media only screen and (max-width: 775px) {
     .navigation, #toggle-upgrades, .nav-button {
         padding: 0 0.4rem;
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 730px) {
     body, #header {
         width: 100%;
         margin: 0;
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 615px) {
     #cards-container {
         --base-size: 0.2;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    #cards-container {
+        --base-size: 0.175;
     }
 }
 
@@ -810,13 +818,9 @@ a.navigation {
         width: .75rem;
         height: .75rem;
     }
-    
-    #cards-container {
-        --base-size: 0.175;
-    }
 }
 
-@media only screen and (max-width: 465px) {
+@media only screen and (max-width: 485px) {
     #cards-container {
         --base-size: 0.13;
     }
@@ -825,5 +829,11 @@ a.navigation {
 @media only screen and (max-width: 395px) {
     .navigation, #toggle-upgrades, .nav-button {
         padding: 0 0.1rem;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    #cards-container {
+        --base-size: 0.1135;
     }
 }
