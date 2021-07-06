@@ -10,7 +10,7 @@ function getQueryText(paramName) {
     }
 };
 
-async function getAllCards() {
+async function getCardList() {
     const destination = `${API_URL}:${API_PORT}/cards/names`;
 
     try {
