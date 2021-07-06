@@ -339,7 +339,7 @@ a.navigation {
 }
 
 .keywords-container {
-    margin-top: 45px;
+    margin-top: calc(calc(45px / 0.6) * var(--size-multiplier));
     position: absolute;
     right: -80%;
     font-size: 175%;
@@ -351,9 +351,7 @@ a.navigation {
 }
 
 .keyword-container {
-    --base-size: 1.0;
-    --size-multiplier: var(--base-size);
-    width: calc(320px * var(--size-multiplier));
+    width: calc(calc(320px / 0.6) * var(--size-multiplier));
     position: relative;
     font-family: 'Kreon', serif;
     margin-bottom: 6px;
@@ -385,20 +383,18 @@ a.navigation {
     font-size: 140%;
 }
 
-.keyword-background-top {
+.keyword-background-top, .keyword-background-middle, .keyword-background-bottom {
     position: absolute;
+    width: 100%;
 }
 
 .keyword-background-middle {
-    height: calc(100% - 64px);
-    width: 100%;
-    position: absolute;
-    top: 32px;
+    height: calc(100% - calc(calc(64px / 0.6) * var(--size-multiplier)));
+    top: calc(calc(32px / 0.6) * var(--size-multiplier));
     left: 0;
 }
 
 .keyword-background-bottom {
-    position: absolute;
     bottom: 0px;
 }
 
@@ -531,17 +527,17 @@ a.navigation {
     left: 50%;
     z-index: 10;
     top: -10%;
-    min-width: 320px;
+    min-width: calc(calc(320px / 0.6) * var(--size-multiplier));
     width: max-content;
-    height: 64px;
+    height: calc(calc(64px / 0.6) * var(--size-multiplier));
     transform: translateX(-50%);
     text-align: center;
 }
 
 #show-next-art, #show-previous-art {
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: calc(calc(25px / 0.6) * var(--size-multiplier));
+    height: calc(calc(25px / 0.6) * var(--size-multiplier));
     top: 50%;
     background: url('/arrow.png');
     background-size: 200%;
@@ -622,7 +618,7 @@ a.navigation {
     border: 3px solid aquamarine;
     border-radius: 100%;
     background-color: rgb(12, 104, 104);
-    padding: 15px;
+    padding: calc(calc(15px / 0.6) * var(--size-multiplier));
     left: 50%;
     transform: translateX(-50%);
     font-size: 200%;
