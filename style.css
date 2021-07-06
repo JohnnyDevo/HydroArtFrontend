@@ -716,6 +716,12 @@ a.navigation {
         opacity: 0;
     }
 }
+
+@media only screen and (max-width: 1330px) {
+    #cards-container {
+        --base-size: 0.3;
+    }
+}
   
 
 @media only screen and (max-width: 850px) {
