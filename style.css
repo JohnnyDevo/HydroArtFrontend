@@ -576,8 +576,8 @@ a.navigation {
 
 #credits-info-name-container, #credits-info-url {
     position: relative;
-    padding: 0 14px;
-    padding-top: 7px;
+    padding: 0 calc(calc(14px / 0.6) * var(--size-multiplier));
+    padding-top: calc(calc(7px / 0.6) * var(--size-multiplier));
     font-size: 200%;
 }
 
