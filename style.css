@@ -343,6 +343,11 @@ a.navigation {
     position: absolute;
     right: -80%;
     font-size: 175%;
+    top: 0;
+    bottom: 0;
+    padding-right: 15px;
+    overflow-y: auto;
+    overflow-x: clip;
 }
 
 .keyword-container {
