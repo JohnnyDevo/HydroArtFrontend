@@ -824,6 +824,10 @@ a.navigation {
     #cards-container {
         --base-size: 0.13;
     }
+
+    .card {
+        font-size: calc(130% * var(--size));
+    }
 }
 
 @media only screen and (max-width: 395px) {
@@ -835,5 +839,9 @@ a.navigation {
 @media only screen and (max-width: 370px) {
     #cards-container {
         --base-size: 0.1135;
+    }
+
+    .card {
+        font-size: calc(150% * var(--size));
     }
 }
