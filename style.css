@@ -610,6 +610,26 @@ a.navigation {
     color: red;
 }
 
+#contribute-button {
+    display: block;
+    position: absolute;
+    bottom: -8%;
+    border: 3px solid aquamarine;
+    border-radius: 100%;
+    background-color: rgb(12, 104, 104);
+    padding: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 200%;
+    color:rgb(223, 175, 86);
+    text-decoration: none;
+}
+
+#contribute-button:hover {
+    transform: translateX(-49%) translateY(1%);
+    filter: brightness(130%);
+}
+
 .lds-spinner {
     color: official;
     display: inline-block;

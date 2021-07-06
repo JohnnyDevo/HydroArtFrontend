@@ -386,6 +386,12 @@ function makeSingleCardView(cardInfo) {
         previewElement.style.display = "block";
         card.prepend(previewElement);
     }
+
+    const contributeButton = document.createElement('a');
+    contributeButton.id = "contribute-button";
+    contributeButton.href = `/art/upload/?cardID=${cardInfo.card.id}`;
+    contributeButton.innerText = "Contribute!";
+    card.appendChild(contributeButton);
 }
 
 function populateCreditsInfo(artElement) {
