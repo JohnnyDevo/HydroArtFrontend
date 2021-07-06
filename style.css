@@ -155,7 +155,9 @@ a.navigation {
 }
 
 #submitButton {
-    display: inline;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     background: skyblue;
     width: 1.4rem;
@@ -532,7 +534,8 @@ a.navigation {
     top: -10%;
     min-width: calc(calc(320px / 0.6) * var(--size-multiplier));
     width: max-content;
-    height: calc(calc(64px / 0.6) * var(--size-multiplier));
+    min-height: calc(calc(64px / 0.6) * var(--size-multiplier));
+    height: max-content;
     transform: translateX(-50%);
     text-align: center;
 }
@@ -617,7 +620,7 @@ a.navigation {
 #contribute-button {
     display: block;
     position: absolute;
-    bottom: -8%;
+    top: 100%;
     border: 3px solid aquamarine;
     border-radius: 100%;
     background-color: rgb(12, 104, 104);
