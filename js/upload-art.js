@@ -20,3 +20,13 @@ async function uploadArt(form) {
         //render some indication that an error happened that wasn't a failed submission
     }
 }
+
+function checkSize(input) {
+    const sizeWarning = document.getElementById("size-warning");
+    if (input.files[0].size > 1048576) {
+        sizeWarning.style.display = "block";
+        input.value = "";
+    } else {
+        sizeWarning.style.display = "none"
+    }
+}

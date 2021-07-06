@@ -605,6 +605,11 @@ a.navigation {
     font-size: 150%;
 }
 
+#size-warning {
+    display: none;
+    color: red;
+}
+
 .lds-spinner {
     color: official;
     display: inline-block;

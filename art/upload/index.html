@@ -21,14 +21,14 @@
     <BODY onload="onLoadPage();getCardList();">
         <div id="page-container">
             <div id="header"><div id="context-buttons"><img src="/favicon.ico" id="fox"></div><nav id="nav-bar"></nav></div>
-            <script type="text/javascript">makeButton();</script>
             <div id="content-wrap">
 
                 <H1>upload form</H1>
                 <form action="">
-                    <input id="submission" name="submission" type="file" accept="image/png, image/jpeg, image/bmp" required="true">
-                    <select id="card-id-selector" name="cardID" required="true">
-                        <option value="">--choose a card--</option>
+                    <p id="size-warning">File is too large! Limit 1MB. Please have mercy on my tiny server :(</p>
+                    <input id="submission" name="submission" type="file" accept="image/png, image/jpeg, image/bmp" required onchange="checkSize(this)">
+                    <select id="card-id-selector" name="cardID" required>
+                        <optgroup label="--choose a card--"></optgroup>
                     </select>
                     <input type="button" name="submitbutton" value="submit" onclick="uploadArt(this.form);">
                 </form>
