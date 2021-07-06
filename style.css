@@ -357,7 +357,7 @@ a.navigation {
     width: calc(calc(320px / 0.6) * var(--size-multiplier));
     position: relative;
     font-family: 'Kreon', serif;
-    margin-bottom: 6px;
+    margin-bottom: calc(calc(6px / 0.6) * var(--size-multiplier));
 }
 
 .keyword-content, .keyword-text, .keyword-name, .keyword-description, .keyword-background-top, .keyword-background-middle, .keyword-background-bottom {
@@ -371,7 +371,7 @@ a.navigation {
 }
 
 .keyword-text {
-    padding: 18px 20px;
+    padding: calc(calc(18px / 0.6) * var(--size-multiplier)) calc(calc(20px / 0.6) * var(--size-multiplier));
 }
 
 .keyword-name {
@@ -382,7 +382,7 @@ a.navigation {
 }
 
 .keyword-description {
-    top: 5px;
+    top: calc(calc(5px / 0.6) * var(--size-multiplier));
     font-size: 140%;
 }
 
