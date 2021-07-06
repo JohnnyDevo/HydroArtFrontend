@@ -68,6 +68,7 @@ function makeHeader(name) {
             <div class="nav-dropdown">  
                 <a href="/art">Submissions</a>
                 <a href="/art/contributors">Contributors</a>
+                <a href="/art/upload">Upload</a>
             </div>
         </div>
         <a class="navigation" href="/cards">Cards</a>
