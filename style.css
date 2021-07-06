@@ -183,7 +183,7 @@ a.navigation {
     background: none;
     border: none;
     background-image: url('/tickbox_unticked.png');
-    background-size: 48px;
+    background-size: 160%;
     background-position: center;
     width: 30px;
     height: 30px;
@@ -720,14 +720,18 @@ a.navigation {
 }
   
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 1060px) {
     #header, #footer {
         height: 1.5rem;
     }
     
-    .navigation {
+    .navigation, #toggle-upgrades, .nav-button {
         font-size: 0.7rem;
-        margin: 0.25rem;
+    }
+
+    #toggle-upgrades-button {
+        width: 20px;
+        height: 20px;
     }
     
     #search {
