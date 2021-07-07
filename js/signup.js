@@ -21,12 +21,177 @@ async function signup(form) {
             credentials: 'include'
         });
         if (response.ok) {
-            window.location.href = `/signin`;
-            //TODO: indicate successful sign up
+            window.location.href = `/profile`;
         } else {
-            //TODO: render reason why signup failed
+            const reason = await response.text();
+            makeGenericError(reason, "server");
         }
     } catch (error) {
-        //render some sort of indication that there was an error, and not a bad sign up
+        makeGenericError(error.message, "browser");
     }
+}
+
+function validateGenericInput(input, isValid = true) {
+    if (input.value && isValid) {
+        input.className = "valid-input";
+    } else if (input.value && !isValid) {
+        input.className = "invalid-input";
+    } else {
+        input.className = null;
+    }
+
+    checkEnableSignupButton();
+}
+
+function clearGenericError() {
+    const genericError = document.getElementById("signup-submission-error");
+    genericError.innerHTML = null;
+    checkEnableSignupButton();
+}
+
+function makeGenericError(reason, where) {
+    const genericError = document.getElementById("signup-submission-error");
+    genericError.innerText = `oh no! There was an error in the ${where} when processing your submission. Reason: ${reason}. Please try again later. If the problem persists, please contact me.`;
+    const confirmButton = document.createElement("button");
+    confirmButton.innerText = "OK";
+    confirmButton.onclick = clearGenericError;
+    genericError.appendChild(confirmButton);
+}
+
+function checkEnableSignupButton() {
+    let disable = false;
+    const usernameField = document.getElementById("signup-username");
+    if (!usernameField.value) {
+        disable = true;
+    }
+    const passwordField = document.getElementById("signup-password");
+    if (!passwordField.value) {
+        disable = true;
+    }
+    const confirmField = document.getElementById("signup-confirmpassword");
+    if (!confirmField.value) {
+        disable = true;
+    }
+
+    Array.from(document.getElementsByClassName("error-message")).forEach(element => {
+        if (element.innerText) {
+            disable = true;
+        }
+    });
+    
+    const button = document.getElementById("signup-submit-button");
+    if (disable) {
+        button.className = "disabled";
+    } else {
+        button.className = null;
+    }
+}
+
+function validatePasswordInput(input) {
+    let isValid = false;
+    if (!input.value) {
+        const errorMessage = document.getElementById("password-error");
+        errorMessage.innerText = null;
+        errorMessage.style.display = null;
+    } else if (input.value.length < 8) {
+        const errorMessage = document.getElementById("password-error");
+        errorMessage.innerText = "Password is below 8 characters";
+        errorMessage.style.display = "block";
+    } else {
+        const errorMessage = document.getElementById("password-error");
+        errorMessage.innerText = null;
+        errorMessage.style.display = null;
+        isValid = true;
+    }
+    validateGenericInput(input, isValid);
+    const confirmField = document.getElementById("signup-confirmpassword");
+    if (confirmField.value) {
+        validatePasswordConfirm(confirmField);
+    }
+}
+
+function validatePasswordConfirm(input) {
+    const passwordField = document.getElementById("signup-password");
+    let isValid = false;
+    if (!input.value) {
+        const errorMessage = document.getElementById("password-confirm-error");
+        errorMessage.innerText = null;
+        errorMessage.style.display = null;
+    } else if (input.value.length < 8) {
+        const errorMessage = document.getElementById("password-confirm-error");
+        errorMessage.innerText = "Password is below 8 characters";
+        errorMessage.style.display = "block";
+    } else if (passwordField.value === input.value) {
+        const errorMessage = document.getElementById("password-confirm-error");
+        errorMessage.innerText = null;
+        errorMessage.style.display = null;
+        isValid = true;
+    } else {
+        const errorMessage = document.getElementById("password-confirm-error");
+        errorMessage.innerText = "Passwords do not match";
+        errorMessage.style.display = "block";
+    }
+    this.validateGenericInput(input, isValid);
+}
+
+function validateUrlInput(input) {
+    let valid = true;
+    //todo validate the url string somehow
+    if (!input.value) {
+        const errorMessage = document.getElementById("credits-url-error");
+        errorMessage.innerText = null;
+        errorMessage.style.display = null;
+        return;
+    }
+    if (!valid) {
+        const errorMessage = document.getElementById("credits-url-error");
+        errorMessage.innerText = "URL is invalid";
+        errorMessage.style.display = "block";
+    } else {
+        const errorMessage = document.getElementById("credits-url-error");
+        errorMessage.innerText = null;
+        errorMessage.style.display = null;
+    }
+    this.validateGenericInput(input, valid);
+}
+
+async function checkUsernameAvailable(input) {
+    if (!input.value) {
+        const errorMessage = document.getElementById("username-error");
+        errorMessage.innerText = null;
+        errorMessage.style.display = null;
+        return;
+    }
+    const destination = `${API_URL}:${API_PORT}/users/${input.value}`;
+
+    //render username bar in "awaiting" mode
+    let isValid = false;
+    try {
+        const response = await fetch(destination, {
+            method: 'GET',
+            redirect: 'manual',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            referrerPolicy: 'no-referrer'
+        });
+        if (response.ok) {
+            const errorMessage = document.getElementById("username-error");
+            errorMessage.innerText = null;
+            errorMessage.style.display = null;
+            isValid = true;
+        } else if (response.status === 409) {
+            const errorMessage = document.getElementById("username-error");
+            errorMessage.innerText = "This username is taken!";
+            errorMessage.style.display = "block";
+        } else {
+            throw new Error();
+        }
+    } catch (error) {
+        const errorMessage = document.getElementById("username-error");
+        errorMessage.innerText = "Oh no! There was an error when checking this username with the server. Please try again later. If the problem persists, please contact me.";
+        errorMessage.style.display = "block";
+    }
+
+    validateGenericInput(input, isValid);
 }

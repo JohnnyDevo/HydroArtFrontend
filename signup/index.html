@@ -10,7 +10,7 @@
 
         <script type="text/javascript" src="/js/check-login.js"></script>
         
-        <TITLE>User Profile</TITLE>
+        <TITLE>Sign Up</TITLE>
         <link href='/style.css' rel='stylesheet'>
         <script type="text/javascript" src="/js/signup.js"></script>
     </HEAD>
@@ -19,29 +19,63 @@
         <div id="page-container">
             <div id="header"><div id="context-buttons"><img src="/favicon.ico" id="fox"></div><nav id="nav-bar"></nav></div>
             <div id="content-wrap">
+                <div id="blog-container">
+                    <div id="signup-title">
+                        <p>Create an Account</p>
+                    </div>
 
-                <H1>Sign up here</H1>
-                <form name="signupform" action="" method="POST">
-                    <label for="username">username:</label>
-                    <input type="text" id="username" name="username">
-                    <br>
-                    <label for="password">password:</label>
-                    <input type="text" id="password" name="password">
-                    <br>
-                    <label for="confirmpassword">retype password:</label>
-                    <input type="text" id="confirmpassword" name="confirmpassword">
-                    <br>
-                    <label for="credits_name">artist alias:</label>
-                    <input type="text" id="credits_name" name="credits_name">
-                    <br>
-                    <label for="credits_url">artist page:</label>
-                    <input type="text" id="credits_url" name="credits_url">
-                    <br>
-                    <label for="contact_info">contact info:</label>
-                    <input type="text" id="contact_info" name="contact_info">
-                    <br>
-                    <input type="button" name="submitbutton" value="submit" onClick="signup(this.form);">
-                </form>
+                    <form id="sign-up-form" name="sign-up-form" action="" method="POST">
+                        <div class="signup-row">
+                            <label for="username">username*</label>
+                            <input type="text" id="signup-username" name="username" required onchange="checkUsernameAvailable(this)">
+                            <p class="error-message" id="username-error"></p>
+                        </div>
+
+                        <div class="signup-row">
+                            <p id="password-info">Passwords must be at least 8 characters long.</p>
+                            <label for="password">password*</label>
+                            <input type="password" id="signup-password" name="password" required onchange="validatePasswordInput(this)">
+                            <p class="error-message" id="password-error"></p>
+                        </div>
+
+                        <div class="signup-row">
+                            <label for="confirmpassword">retype password*</label>
+                            <input type="password" id="signup-confirmpassword" name="confirmpassword" required onchange="validatePasswordConfirm(this)">
+                            <p class="error-message" id="password-confirm-error"></p>
+                        </div>
+
+                        <div class="signup-row">
+                            <p id="credits_name-info">This will be whatever name you want to be credited as, and will appear in other portions of this site, as well as in game. If you leave it blank, it defaults to "Anonymous".</p>
+                            <label for="credits_name">artist alias</label>
+                            <input type="text" id="signup-credits_name" name="credits_name" onchange="validateGenericInput(this)">
+                        </div>
+
+                        <div class="signup-row">
+                            <p id="credits_name-info">In places where your art is displayed, such as other portions of this site or next to your art in game, a link to this site will be generated. Could be your artist page, twitter account, etc.</p>
+                            <label for="credits_url">artist page</label>
+                            <input type="text" id="signup-credits_url" name="credits_url" onchange="validateUrlInput(this)">
+                            <p class="error-message" id="credits-url-error"></p>
+                        </div>
+
+                        <div class="signup-row">
+                            <p id="credits_name-info">The Hydrologist is still in development! If I wanted to reply to some feedback, or ask about using submitted art for another card if I ever delete a card, I would reach out to you through this method. It's completely optional, and could be a twitter handle, discord name, email address, or some other method of contact.</p>
+                            <label for="contact_info">contact info</label>
+                            <input type="text" id="signup-contact_info" name="contact_info" onchange="validateGenericInput(this)">
+                        </div>
+
+                        <div class="signup-row" id="submit-row">
+                            <input class="disabled" type="button" id="signup-submit-button" name="submitbutton" value="Sign Up" onClick="signup(this.form);">
+                        </div>
+                    </form>
+
+                    <div id="signup-to-login">
+                        <p>Already have an account? <a href="/profile">Sign In!</a></p>
+                    </div>
+
+                    <div>
+                        <p class="error-message" id="signup-submission-error"></p>
+                    </div>
+                </div>
 
             </div>
             <nav id="footer"></nav>

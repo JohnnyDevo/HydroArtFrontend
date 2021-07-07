@@ -41,22 +41,27 @@
 #page-container {
     position: relative;
     display: block;
-    min-height: 100vh;
+    min-height: 100%;
+    background-color: rgb(23, 34, 54);
     margin: 0;
     border: none;
     padding: 0;
+    box-sizing: border-box;
 }
   
 #content-wrap {
+    width: 100%;
+    height: 100%;
     display: block;
     margin: 0;
     border: none;
     padding: 2.5rem 1.0rem;
+    box-sizing: border-box;
 }
 
 html {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     margin: 0;
     border: none;
     padding: 0;
@@ -67,10 +72,11 @@ html {
 body {
     width: 80%;
     display: block;
+    height: 100%;
     margin: 0 10%;
     border: none;
-    background-color: rgb(23, 34, 54);
     color: white;
+    box-sizing: border-box;
 }
 
 .nav-bar {
@@ -707,6 +713,85 @@ a.navigation {
 #contribute-button:hover {
     transform: translateX(-49%) translateY(1%);
     filter: brightness(130%);
+}
+
+#blog-container {
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    margin: 0 30%;
+    padding: 2% 3%;
+    background-color: rgb(8, 8, 71);
+    box-sizing: border-box;
+}
+
+#sign-up-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#sign-up-form div {
+    width: 100%;
+    padding: 5px 0;
+}
+
+#sign-up-form div input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#submit-row #signup-submit-button {
+    width: 70%;
+}
+
+#submit-row {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.signup-row p {
+    display: none;
+}
+
+.signup-row:focus-within p{
+    display: block;
+}
+
+.signup-row:focus-within {
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.error-message {
+    color: red;
+}
+
+.valid-input {
+    border: 3px solid green;
+}
+
+.invalid-input {
+    border: 3px solid red;
+}
+
+.disabled {
+    pointer-events: none;
+    filter: blur(0.3px) brightness(0.4);
+}
+
+#signup-title {
+    font-size: 200%;
+    text-align: center;
+}
+
+#signup-to-login {
+    font-size: 130%;
+    text-align: center;
+}
+
+#signup-to-login a {
+    color:rgb(223, 175, 86);
+    display: block;
 }
 
 .lds-spinner {
