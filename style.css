@@ -200,7 +200,7 @@ a.navigation {
 }
 
 #login-tint {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 10000;
@@ -210,13 +210,12 @@ a.navigation {
 }
 
 #login-prompt {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     z-index: 10001;
-    width: 50%;
-    max-width: 250px;
-    height: 50%;
+    width: 250px;
+    height: 314px;
     transform: translate(-50%, -50%);
     display: flex;
     flex-wrap: wrap;

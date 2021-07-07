@@ -138,7 +138,7 @@ async function signin(clickEvent) {
         });
         
         if (response.ok) {
-            window.location.href = '/profile';
+            window.location.reload();
         } else {
             //TODO: handle incorrect logins
         }
