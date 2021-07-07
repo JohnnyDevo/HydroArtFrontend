@@ -38,6 +38,7 @@ function populateOptions(results) {
     const cardID = getQueryText("cardID");
     const selector = document.getElementById("card-id-selector");
 
+    let defaultSet = false;
     for (const index in results) {
         const card = results[index];
 
@@ -49,6 +50,10 @@ function populateOptions(results) {
 
         if (cardID == card.id) {
             selector.value = card.id;
+            defaultSet = true;
         }
+    }
+    if (!defaultSet) {
+        selector.value = "";
     }
 }
