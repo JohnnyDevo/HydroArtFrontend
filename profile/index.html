@@ -12,17 +12,49 @@
         
         <TITLE>User Profile</TITLE>
         <link href='/style.css' rel='stylesheet'>
-        <script type="text/javascript" src="/js/signout.js"></script>
+        <script type="text/javascript" src="/js/delete-account.js"></script>
+        <script type="text/javascript" src="/js/get-account-info.js"></script>
     </HEAD>
 
-    <BODY onload="onLoadPage(true);">
+    <BODY onload="onLoadPage(true, getAccountInfo);">
         <div id="page-container">
             <div id="header"><div id="context-buttons"><img src="/favicon.ico" id="fox"></div><nav id="nav-bar"></nav></div>
             <div id="content-wrap">
 
-                <H1>Placeholder</H1>
-                <P>On this page, a user can either sign in, sign up, sign out, or manage their profile.</P>
-                <br>
+                <div id="blog-container">
+                    <table id="user-info-table">
+                        <tbody>
+                            <tr>
+                                <td class="user-info-category">Username</td>
+                                <td class="user-info-data" id="user-info-username"></td>
+                            </tr>
+                            <tr>
+                                <td class="user-info-category">Artist Alias</td>
+                                <td class="user-info-data" id="user-info-credits_name"></td>
+                            </tr>
+                            <tr>
+                                <td class="user-info-category">Artist URL</td>
+                                <td class="user-info-data" id="user-info-credits_url"></td>
+                            </tr>
+                            <tr>
+                                <td class="user-info-category">Contact Info</td>
+                                <td class="user-info-data" id="user-info-contact_info"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="manage-profile">
+                        <a id="manage-arts-link" href="/profile/manage/">Manage Submissions</a>
+                    </div>
+
+                    <div class="manage-profile">
+                        <a id="manage-profile-link" href="/profile/update/">Update Profile</a>
+                    </div>
+
+                    <div class="manage-profile">
+                        <span id="delete-account-link" onclick="confirmDeleteAccount()">Delete Account</span>
+                    </div>
+                </div>
 
             </div>
             <nav id="footer"></nav>

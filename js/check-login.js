@@ -1,9 +1,10 @@
 window.onload = onLoadPage;
 
-async function onLoadPage(askLogin) {
+async function onLoadPage(askLogin, callback) {
     const destination = `${API_URL}:${API_PORT}/users`;
 
     let username;
+    let id;
     let ok = false;
     try {
         const response = await fetch(destination, {
@@ -18,9 +19,10 @@ async function onLoadPage(askLogin) {
     
         if (response.ok) {
             const user = await response.json();
-            username = user.username;
             if (user.username) {
                 ok = true;
+                username = user.username;
+                id = user.id;
             }
         }
     } catch (error) {
@@ -33,6 +35,10 @@ async function onLoadPage(askLogin) {
 
     makeHeader(username);
     makeFooter();
+
+    if (ok && callback) {
+        callback(id);
+    }
 }
 
 function makeSigninPrompt(skipObserve) {

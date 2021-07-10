@@ -10,37 +10,39 @@
 
         <script type="text/javascript" src="/js/check-login.js"></script>
         
-        <TITLE>Sign Up</TITLE>
+        <TITLE>User Profile</TITLE>
         <link href='/style.css' rel='stylesheet'>
         <script type="text/javascript" src="/js/signup.js"></script>
+        <script type="text/javascript" src="/js/manage-account.js"></script>
     </HEAD>
 
-    <BODY onload="onLoadPage();">
+    <BODY onload="onLoadPage(true);">
         <div id="page-container">
             <div id="header"><div id="context-buttons"><img src="/favicon.ico" id="fox"></div><nav id="nav-bar"></nav></div>
             <div id="content-wrap">
+
                 <div id="blog-container">
                     <div id="signup-title">
-                        <p>Create an Account</p>
+                        <p>Update your Account</p>
                     </div>
 
-                    <form id="sign-up-form" name="sign-up-form" action="" method="POST">
+                    <form id="sign-up-form" name="sign-up-form" action="" method="PUT">
                         <div class="signup-row">
-                            <label for="username">username*</label>
-                            <input type="text" id="signup-username" name="username" required onchange="checkUsernameAvailable(this)">
+                            <label for="username">new username</label>
+                            <input type="text" id="signup-username" name="username" onchange="checkUsernameAvailable(this)">
                             <p class="error-message" id="username-error"></p>
                         </div>
 
                         <div class="signup-row">
                             <p id="password-info">Passwords must be at least 8 characters long.</p>
-                            <label for="password">password*</label>
-                            <input type="password" id="signup-password" name="password" required onchange="validatePasswordInput(this)">
+                            <label for="password">new password</label>
+                            <input type="password" id="signup-password" name="password" onchange="validatePasswordInput(this)">
                             <p class="error-message" id="password-error"></p>
                         </div>
 
                         <div class="signup-row">
-                            <label for="confirmpassword">retype password*</label>
-                            <input type="password" id="signup-confirmpassword" name="confirmpassword" required onchange="validatePasswordConfirm(this)">
+                            <label for="confirmpassword">retype new password</label>
+                            <input type="password" id="signup-confirmpassword" name="confirmpassword" onchange="validatePasswordConfirm(this)">
                             <p class="error-message" id="password-confirm-error"></p>
                         </div>
 
@@ -63,14 +65,16 @@
                             <input type="text" id="signup-contact_info" name="contact_info" onchange="validateGenericInput(this)">
                         </div>
 
+                        <div class="signup-row">
+                            <p id="key-info">For security reasons, you must provide your current password in order to make any changes to your account.</p>
+                            <label for="key">current password*</label>
+                            <input type="password" id="signup-key" name="key" required onchange="checkOldPasswordField(this)">
+                        </div>
+
                         <div class="signup-row" id="submit-row">
-                            <input class="disabled" type="button" id="signup-submit-button" name="submitbutton" value="Sign Up" onclick="signup(this.form);">
+                            <input class="disabled" type="button" id="signup-submit-button" name="submitbutton" value="Submit" onclick="updateAccount(this.form);">
                         </div>
                     </form>
-
-                    <div id="signup-to-login">
-                        <p>Already have an account? <a href="/profile">Sign In!</a></p>
-                    </div>
 
                     <div>
                         <p class="error-message" id="signup-submission-error"></p>

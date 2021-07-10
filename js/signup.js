@@ -51,14 +51,20 @@ function clearGenericError() {
 
 function makeGenericError(reason, where) {
     const genericError = document.getElementById("signup-submission-error");
-    genericError.innerText = `oh no! There was an error in the ${where} when processing your submission. Reason: ${reason}. Please try again later. If the problem persists, please contact me.`;
+    genericError.innerText = `oh no! There was an error in the ${where} when processing your submission. Reason:`;
+    const errorElement = document.createElement("p");
+    errorElement.innerHTML = reason;
+    genericError.appendChild(errorElement);
+    const tryAgain = document.createElement("p");
+    tryAgain.innerText = "Please try again later. If the problem persists, please contact me.";
     const confirmButton = document.createElement("button");
     confirmButton.innerText = "OK";
     confirmButton.onclick = clearGenericError;
     genericError.appendChild(confirmButton);
 }
 
-function checkEnableSignupButton() {
+//stored in a variable so manage-account.js can redefine it
+let checkEnableSignupButton = () => {
     let disable = false;
     const usernameField = document.getElementById("signup-username");
     if (!usernameField.value) {
