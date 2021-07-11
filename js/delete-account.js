@@ -28,6 +28,7 @@ function confirmDeleteAccount() {
         film.remove();
         prompt.remove();
     }
+    prompt.appendChild(noButton);
 
     const cascadeLabel = document.createElement("label");
     cascadeLabel.htmlFor = "cascade-delete";
@@ -55,9 +56,7 @@ function confirmDeleteAccount() {
 }
 
 async function deleteAccount() {
-    console.log("henlo");
     const password = document.getElementById("delete-account-password").value;
-    console.log(password);
     const cascade = document.getElementById("cascade-delete").checked;
     const data = {
         password: password,

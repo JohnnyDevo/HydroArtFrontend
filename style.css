@@ -205,7 +205,7 @@ a.navigation {
     height: 30px;
 }
 
-#login-tint {
+#login-tint, #delete-account-tint {
     position: fixed;
     top: 0;
     left: 0;
@@ -215,7 +215,7 @@ a.navigation {
     height: 100%;
 }
 
-#login-prompt {
+#login-prompt, #delete-account-prompt {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -234,6 +234,11 @@ a.navigation {
     border-radius: 8px;
     font-size: 130%;
     color: white;
+}
+
+#delete-account-prompt {
+    border-color: red;
+    padding: 0;
 }
 
 #login-prompt form {
