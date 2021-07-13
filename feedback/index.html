@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<HTML>
+
+    <HEAD>
+        <script type="text/javascript" src="/js/config.js"></script>
+        
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+
+        <script type="text/javascript" src="/js/check-login.js"></script>
+        
+        <TITLE>Feedback</TITLE>
+        <link href='/style.css' rel='stylesheet'>
+        <script type="text/javascript" src="/js/get-card-list.js"></script>
+        <script type="text/javascript" src="/js/feedback.js"></script>
+    </HEAD>
+
+    <BODY onload="onLoadPage(true);getCardList();initializeFeedback();">
+        <div id="page-container">
+            <div id="header"><div id="context-buttons"><img src="/favicon.ico" id="fox"></div><nav id="nav-bar"></nav></div>
+            <div id="content-wrap">
+
+                <div id="blog-container">
+
+                    <form id="user-feedback-form">
+                        <div class="feedback-row">
+                            <p>Feedback category</p>
+                            <select id="category" name="category" onchange="showHideRows(this)">
+                                <option value="Website feedback" id="website">Website feedback</option>
+                                <option value="Hydrologist feedback" id="hydro">Hydrologist feedback</option>
+                                <option value="Card feedback" id="card">Card feedback</option>
+                                <option value="Report an account/url" id="reportuser">Report an account/url</option>
+                                <option value="Report inappropriate art" id="reportart">Report inappropriate art</option>
+                                <option value="Other (please specify)" id="other">Other (please specify)</option>
+                            </select>
+                        </div>
+
+                        <div class="feedback-row" id="custom-feedback">
+                            <p>what kind of feedback is this?</p>
+                            <input id="custom-feedback-input" type="text" name="custom-category">
+                        </div>
+
+                        <div class="feedback-row" id="card-feedback">
+                            <p>What card are you submitting feedback for?</p>
+                            <select id="card-id-selector" name="cardID"></select>
+                        </div>
+
+                        <div class="feedback-row">
+                            <textarea id="feedback-content" rows="10" cols="80" placeholder="enter your feedback here..."></textarea>
+                        </div>
+
+                        <div class="feedback-row">
+                            <input id="feedback-submit" type="button" onclick="submitFeedback(this.form)" value="Submit">
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+            <nav id="footer"></nav>
+        </div>
+    </BODY>
+
+</HTML>

@@ -799,6 +799,10 @@ a.navigation {
     display: block;
 }
 
+#custom-feedback, #card-feedback {
+    display: none;
+}
+
 .lds-spinner {
     color: official;
     display: inline-block;
