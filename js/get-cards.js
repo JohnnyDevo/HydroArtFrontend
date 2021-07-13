@@ -11,9 +11,18 @@ async function getAllCards() {
             referrerPolicy: 'no-referrer'
         });
     
-        populateResults(await response.json());
+        if (response.ok) {
+            populateResults(await response.json());
+        } else {
+            throw new Error();
+        }
     } catch (error) {
-        //render something in the browser to let the user know something happened
+        const container = document.getElementById("cards-container");
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        container.style.color = "red";
+        container.innerText = "There was an error while retrieving cards from the server. Please try again later.";
     }
 }
 
@@ -46,10 +55,19 @@ async function doSearch() {
             },
             referrerPolicy: 'no-referrer'
         });
-    
-        populateResults(await response.json());
+
+        if (response.ok) {
+            populateResults(await response.json());
+        } else {
+            throw new Error();
+        }
     } catch (error) {
-        //render something in the browser to let the user know something happened
+        const container = document.getElementById("cards-container");
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        container.style.color = "red";
+        container.innerText = "There was an error while retrieving cards from the server. Please try again later.";
     }
     document.getElementById('searchBar').value = search;
 }
@@ -71,11 +89,18 @@ async function getSingleCard() {
             referrerPolicy: 'no-referrer'
         });
     
-        const result = await response.json();
-        makeSingleCardView(result);
+        if (response.ok) {
+            makeSingleCardView(await response.json());
+        } else {
+            throw new Error();
+        }
     } catch (error) {
-        console.log(error);
-        //render something in the browser to let the user know something happened
+        const container = document.getElementById("cards-container");
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        container.style.color = "red";
+        container.innerText = "There was an error while retrieving the card from the server. Please try again later.";
     }
 }
 

@@ -12,13 +12,27 @@ async function getAllArt() {
         });
     
         if (response.ok) {
-            const result = await response.json();
-            populateArt(result);
+            response.json()
+            .then(result => populateArt(result))
+            .catch(error => {
+                const container = document.getElementById("art-container");
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                container.style.textAlign = "center";
+                container.style.display = "block";
+                container.innerHTML = `<p>There's nothing here yet! If you'd like,</p><br><a href="/art/upload/">be the first to contribute!</a>`;
+            });
         } else {
-            console.log(response);
+            throw new Error();
         }
     } catch (error) {
-        //render something in the browser to let the user know something happened
+        const container = document.getElementById("art-container");
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        container.style.color = "red";
+        container.innerText = "There was an error while retrieving art from the server. Please try again later.";
     }
 }
 
@@ -60,18 +74,31 @@ async function getArt() {
         });
     
         if (response.ok) {
-            const result = await response.json();
-            populateArt(result);
+            response.json()
+            .then(result => populateArt(result))
+            .catch(error => {
+                const container = document.getElementById("art-container");
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                container.style.textAlign = "center";
+                container.style.display = "block";
+                container.innerHTML = `<p>No art found by this artist or for this card.</p>`;
+            });
         } else {
-            console.log(response);
+            throw new Error();
         }
     } catch (error) {
-        //render something in the browser to let the user know something happened
+        const container = document.getElementById("art-container");
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        container.style.color = "red";
+        container.innerText = "There was an error while retrieving art from the server. Please try again later.";
     }
 }
 
 function populateArt(results) {
-    //if no art, do something in the browser to show that there is no art (yet! :D)
     const container = document.getElementById("art-container");
     while (container.firstChild) {
         container.removeChild(container.firstChild);

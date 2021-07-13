@@ -12,21 +12,34 @@ async function manageArt(userID) {
         });
     
         if (response.ok) {
-            const result = await response.json();
-            makeConfirmButton();
-            populateArt(result);
+            response.json()
+            .then(result => {
+                makeConfirmButton();
+                populateArt(result);
+            })
+            .catch(error => {
+                const container = document.getElementById("art-container");
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                container.style.textAlign = "center";
+                container.style.display = "block";
+                container.innerHTML = `<p>There's nothing here yet! If you'd like,</p><br><a href="/art/upload/">submit your first piece!</a>`;
+            });
         } else {
-            console.log(response);
-            //render something in the browser to let user know why request failed
+            throw new Error();
         }
     } catch (error) {
-        //render something in the browser to let the user know something happened in the browser
-        console.log(error);
+        const container = document.getElementById("art-container");
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        container.style.color = "red";
+        container.innerText = "There was an error while retrieving art from the server. Please try again later.";
     }
 }
 
 function populateArt(results) {
-    //if no art, do something in the browser to show that there is no art (yet! :D)
     const container = document.getElementById("art-container");
     while (container.firstChild) {
         container.removeChild(container.firstChild);
@@ -113,6 +126,11 @@ function makeConfirmButton() {
     container.appendChild(button);
 
     container.style.display = "none";
+
+    const errorMessage = document.createElement("p");
+    errorMessage.style.display = "none";
+    errorMessage.id = "art-deletion-error";
+    container.appendChild(errorMessage);
 }
 
 function checkShowDeleteButtion() {
@@ -152,10 +170,18 @@ function deleteArts() {
             .then(response => {
                 if (response.ok) {
                     removeArtElement(box.value);
+                } else if (response.status === 401) {
+                    const errorMessage = document.getElementById("art-deletion-error");
+                    errorMessage.style.display = "block";
+                    errorMessage.innerText = "invalid password";
+                } else {
+                    throw new Error();
                 }
             })
             .catch(() => {
-                //TODO: render an error on the screen why the deletion failed
+                const errorMessage = document.getElementById("art-deletion-error");
+                errorMessage.style.display = "block";
+                errorMessage.innerText = "Failed to delete some or all arts";
             });
         }
     });

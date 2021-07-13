@@ -44,6 +44,7 @@
                         <div class="feedback-row" id="card-feedback">
                             <p>What card are you submitting feedback for?</p>
                             <select id="card-id-selector" name="cardID"></select>
+                            <p id="card-list-error"></p>
                         </div>
 
                         <div class="feedback-row">
@@ -53,6 +54,8 @@
                         <div class="feedback-row">
                             <input id="feedback-submit" type="button" onclick="submitFeedback(this.form)" value="Submit">
                         </div>
+
+                        <p id="feedback-error"></p>
                     </form>
 
                 </div>

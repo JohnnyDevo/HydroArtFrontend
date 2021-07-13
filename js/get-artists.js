@@ -12,13 +12,27 @@ async function getAllArtists() {
         });
     
         if (response.ok) {
-            const result = await response.json();
-            populateArtists(result);
+            response.json()
+            .then(result => populateArtists(result))
+            .catch(error => {
+                const container = document.getElementById("artist-container");
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                container.style.textAlign = "center";
+                container.style.display = "block";
+                container.innerHTML = `<p>There's nobody here yet! If you'd like,</p><br><a href="/art/upload/">be the first to contribute!</a>`;
+            });
         } else {
-            console.log(response);
+            throw new Error();
         }
     } catch (error) {
-        //render something in the browser to let the user know something error'd
+        const container = document.getElementById("artist-container");
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        container.style.color = "red";
+        container.innerText = "There was an error while retrieving the list of contributors from the server. Please try again later.";
     }
 }
 

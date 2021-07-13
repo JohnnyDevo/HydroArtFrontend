@@ -87,11 +87,13 @@ async function submitFeedback(form) {
             credentials: 'include'
         });
         if (response.ok) {
-            //tell user not bork
+            window.history.back();
         } else {
-            //tell user why bork
+            throw new Error();
         }
     } catch (error) {
-        console.log(error);
+        const errorMessage = document.getElementById("feedback-error");
+        errorMessage.innerText = "There was an error when communicating with the server, please try again later.";
+        errorMessage.style.display = "block";
     }
 }

@@ -26,7 +26,7 @@ async function onLoadPage(askLogin, callback) {
             }
         }
     } catch (error) {
-        //render something in the browser to let the user know something happened
+        window.location.href = "/uhoh/";
     }
 
     if (!ok && askLogin) {
@@ -120,6 +120,11 @@ function makeSigninPrompt(skipObserve) {
     signupLink.href = "/signup";
     signup.appendChild(signupLink);
     prompt.appendChild(signup);
+
+    const errorMessage = document.createElement("p");
+    errorMessage.style.display = "none";
+    errorMessage.id = "signup-error";
+    prompt.appendChild(errorMessage);
 }
 
 async function signin(clickEvent) {
@@ -145,11 +150,17 @@ async function signin(clickEvent) {
         
         if (response.ok) {
             window.location.reload();
+        } else if (response.status === 500) {
+            throw new Error();
         } else {
-            //TODO: handle incorrect logins
+            const errorMessage = document.getElementById("signup-error");
+            errorMessage.innerText = "Invalid username/password combination.";
+            errorMessage.style.display = "block";
         }
     } catch (error) {
-        //render something to indicate an error, not incorrect login
+        const errorMessage = document.getElementById("signup-error");
+        errorMessage.innerText = "There was an error when communicating with the server.";
+        errorMessage.style.display = "block";
     }
 }
 
@@ -225,8 +236,10 @@ async function signout() {
         });
         if (response.ok) {
             window.location.href = '/';
+        } else {
+            throw new Error();
         }
     } catch (error) {
-        //render something to indicate an error occured
+        window.location.href = "/uhoh/";
     }
 }

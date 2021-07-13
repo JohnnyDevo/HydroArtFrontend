@@ -16,10 +16,12 @@ async function getAccountInfo() {
             const user = await response.json();
             populateUserInfo(user);
         } else {
-            //render something in the browser to let the user know something happened
+            throw new Error();
         }
     } catch (error) {
-        //render something in the browser to let the user know something happened
+        const errorMessage = document.getElementById("profile-error");
+        errorMessage.innerText = "There was an error when communicating with the server, please try again later.";
+        errorMessage.style.display = "block";
     }
 }
 

@@ -27,10 +27,12 @@ async function getCardList() {
             const result = await response.json();
             populateOptions(result);
         } else {
-            //render the response's error
+            throw new Error();
         }
     } catch (error) {
-        //render something in the browser to let the user know something happened
+        const errorMessage = document.getElementById("card-list-error");
+        errorMessage.style.display = "block";
+        errorMessage.innerText = "there was an error while retrieving a list of cards from the server. Please try again later.";
     }
 }
 

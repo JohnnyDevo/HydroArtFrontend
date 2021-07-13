@@ -53,6 +53,11 @@ function confirmDeleteAccount() {
     button.value = "Confirm Account Deletion";
     button.onclick = deleteAccount;
     prompt.appendChild(button);
+
+    const errorMessage = document.createElement("p");
+    errorMessage.style.display = "none";
+    errorMessage.id = "delete-account-error";
+    prompt.appendChild(errorMessage);
 }
 
 async function deleteAccount() {
@@ -79,9 +84,13 @@ async function deleteAccount() {
         if (response.ok) {
             window.location.replace("/");
         } else {
-            //render something in the browser to let the user know something happened
+            const errorMessage = document.getElementById("delete-account-error");
+            errorMessage.innerText = "incorrect password.";
+            errorMessage.style.display = "block";
         }
     } catch (error) {
-        //render something in the browser to let the user know something happened
+        const errorMessage = document.getElementById("delete-account-error");
+        errorMessage.innerText = "There was an error when communicating with the server.";
+        errorMessage.style.display = "block";
     }
 }

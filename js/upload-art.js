@@ -11,13 +11,14 @@ async function uploadArt(form) {
         });
         if (response.ok) {
             const artInfo = await response.json();
-            document.getElementById('reflect').src = `data:image/png;base64,${artInfo.encode}`;
-            //generate link to the card
+            window.location.href = `/cards/view?cardID=${form.cardID.value}&artID=${artInfo.id}`;
         } else {
-            //render the reason why the submission was rejected
+            throw new Error();
         }
     } catch (error) {
-        //render some indication that an error happened that wasn't a failed submission
+        const errorMessage = document.getElementById("upload-art-error");
+        errorMessage.style.display = "block";
+        errorMessage.innerText = "There was an error when submitting your art to the server, please try again later."
     }
 }
 
