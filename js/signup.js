@@ -141,24 +141,32 @@ function validatePasswordConfirm(input) {
 }
 
 function validateUrlInput(input) {
-    let valid = true;
-    //todo validate the url string somehow
     if (!input.value) {
         const errorMessage = document.getElementById("credits-url-error");
         errorMessage.innerText = null;
         errorMessage.style.display = null;
         return;
     }
-    if (!valid) {
+    const url = makeUrl(input.value);
+    if (!url) {
         const errorMessage = document.getElementById("credits-url-error");
         errorMessage.innerText = "URL is invalid";
         errorMessage.style.display = "block";
     } else {
         const errorMessage = document.getElementById("credits-url-error");
+        input.value = url;
         errorMessage.innerText = null;
         errorMessage.style.display = null;
     }
-    this.validateGenericInput(input, valid);
+    this.validateGenericInput(input, url);
+}
+
+function makeUrl(str) {
+    try {
+        return new URL(str).toString();
+    } catch (error) {
+        return false;
+    }
 }
 
 async function checkUsernameAvailable(input) {
