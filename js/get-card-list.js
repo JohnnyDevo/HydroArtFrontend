@@ -1,15 +1,3 @@
-function getQueryText(paramName) {
-
-    //regex to read the parameters
-    paramName = paramName.replace(/[\[\]]/g, '\\$&');
-    const regex = new RegExp('[?&]' + paramName + '(=([^&#]*)|&|#|$)');
-    const results = regex.exec(window.location.href);
-
-    if (results && results[2]) {
-        return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
-};
-
 async function getCardList() {
     const destination = `${API_URL}:${API_PORT}/cards/names`;
 
