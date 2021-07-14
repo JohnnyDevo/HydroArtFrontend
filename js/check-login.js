@@ -109,7 +109,9 @@ function makeSigninPrompt(skipObserve) {
     button.type = "button";
     button.name = "submitbutton";
     button.value = "Log In";
-    button.onclick = signin;
+    button.onclick = () => {
+        signin(form);
+    };
     inputRow.appendChild(button);
     form.appendChild(inputRow);
 
@@ -127,8 +129,7 @@ function makeSigninPrompt(skipObserve) {
     prompt.appendChild(errorMessage);
 }
 
-async function signin(clickEvent) {
-    const form = clickEvent.explicitOriginalTarget.form;
+async function signin(form) {
     const destination = `${API_URL}:${API_PORT}/login`;
 
     const data = {
