@@ -808,13 +808,28 @@ a.navigation {
     z-index: calc(10 + var(--z-modifier));
     right: calc(48px * var(--size));
     top: calc(24px * var(--size));
-    width: calc(48px * var(--size));
-    height: calc(48px * var(--size));
+    width: calc(36px * var(--size));
+    height: calc(36px * var(--size));
 }
 
 #single-view-report-button img {
     width: 100%;
     height: 100%;
+}
+
+#single-view-report-button span {
+    display: none;
+    position: absolute;
+    left: 0;
+    text-decoration: none;
+    color: white;
+    font-size: 150%;
+    top: 50%;
+    transform: translate(-100%, -50%);
+}
+
+#single-view-report-button:hover span {
+    display: block;
 }
 
 .lds-spinner {

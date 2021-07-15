@@ -374,6 +374,9 @@ function makeSingleCardView(cardInfo) {
     reportButton.className = cardInfo.card.id;
     reportButton.href = null;
     reportButton.style.display = "none";
+    const reportText = document.createElement("span");
+    reportText.innerText = "report";
+    reportButton.appendChild(reportText);
     const reportImage = document.createElement("img");
     reportImage.src = "/redflag.png";
     reportButton.appendChild(reportImage);
