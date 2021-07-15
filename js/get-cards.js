@@ -369,6 +369,16 @@ function makeSingleCardView(cardInfo) {
         defaultArtElement.appendChild(defaultUrlElement);
     }
 
+    const reportButton = document.createElement("a");
+    reportButton.id = "single-view-report-button";
+    reportButton.className = cardInfo.card.id;
+    reportButton.href = null;
+    reportButton.style.display = "none";
+    const reportImage = document.createElement("img");
+    reportImage.src = "/redflag.png";
+    reportButton.appendChild(reportImage);
+    card.appendChild(reportButton);
+
     artsArray.forEach(art => {
         card.prepend(art);
     });
@@ -410,11 +420,17 @@ function makeSingleCardView(cardInfo) {
 function populateCreditsInfo(artElement) {
     const creditsInfoName = document.getElementById("credits-info-name");
     const creditsInfoUrl = document.getElementById("credits-info-url");
-    creditsInfoName.innerHTML = artElement.getElementsByClassName("art-artist-name")[0].innerHTML;
+    const artistName = artElement.getElementsByClassName("art-artist-name")[0];
+    creditsInfoName.innerHTML = artistName.innerHTML;
     const url = artElement.getElementsByClassName("art-artist-url")[0].innerHTML;
     creditsInfoUrl.innerHTML = url;
     creditsInfoUrl.href = `/external/?link=${encodeURIComponent(url)}`;
     creditsInfoUrl.target = "_blank";
+
+    const reportButton = document.getElementById("single-view-report-button");
+    reportButton.style.display = "block";
+    const cardID = reportButton.className;
+    reportButton.href = `/feedback/?reason=reportart&cardID=${cardID}&artist=${encodeURIComponent(artistName.innerHTML)}`
 }
 
 function createKeywordElement(name, description) {
