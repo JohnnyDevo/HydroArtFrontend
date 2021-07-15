@@ -147,5 +147,13 @@ function makeArtElement(art) {
     cardName.innerText = art.card_name;
     cardLinkContainer.appendChild(cardName);
 
+    const reportButton = document.createElement("a");
+    reportButton.href = `/feedback/?reason=reportart&cardID=${art.card_id}&artist=${encodeURIComponent(art.credits_name)}`;
+    reportButton.className = 'report-art-button';
+    const reportImage = document.createElement("img");
+    reportImage.src = "/redflag.png";
+    reportButton.appendChild(reportImage);
+    info.appendChild(reportButton);
+
     return buffer;
 }
