@@ -21,10 +21,11 @@ function initializeFeedback() {
                 break;
             case "reportart":
                 cardSelection.style.display = "block";
-                const suspiciousUser = getQueryText("artist");
-                if (suspiciousUser) {
-                    feedbackContainer.innerText = `I believe that the art submitted for this card by the artist "${suspiciousUser}" is inappropriate or stolen.`;
+                let suspiciousUser = getQueryText("artist");
+                if (!suspiciousUser) {
+                    suspiciousUser = "Anonymous";
                 }
+                feedbackContainer.innerText = `I believe that the art submitted for this card by the artist "${suspiciousUser}" is inappropriate or stolen.`;
                 break;
             case "other":
                 const custom = document.getElementById("custom-feedback");
