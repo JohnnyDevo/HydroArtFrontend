@@ -1,4 +1,11 @@
+let signupButtonClicked = false;
+
 async function signup(form) {
+    if (signupButtonClicked) {
+        return;
+    } else {
+        signupButtonClicked = true;
+    }
     const destination = `${API_URL}:${API_PORT}/users`;
 
     const data = {
@@ -25,9 +32,11 @@ async function signup(form) {
         } else {
             const reason = await response.text();
             makeGenericError(reason, "server");
+            signupButtonClicked = false;
         }
     } catch (error) {
         makeGenericError(error.message, "browser");
+        signupButtonClicked = false;
     }
 }
 

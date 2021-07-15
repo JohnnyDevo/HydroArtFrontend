@@ -129,7 +129,14 @@ function makeSigninPrompt(skipObserve) {
     prompt.appendChild(errorMessage);
 }
 
+let signinPressed = false;
+
 async function signin(form) {
+    if (signinPressed) {
+        return;
+    } else {
+        signinPressed = true;
+    }
     const destination = `${API_URL}:${API_PORT}/login`;
 
     const data = {
@@ -157,11 +164,13 @@ async function signin(form) {
             const errorMessage = document.getElementById("signup-error");
             errorMessage.innerText = "Invalid username/password combination.";
             errorMessage.style.display = "block";
+            signinPressed = false;
         }
     } catch (error) {
         const errorMessage = document.getElementById("signup-error");
         errorMessage.innerText = "There was an error when communicating with the server.";
         errorMessage.style.display = "block";
+        signinPressed = false;
     }
 }
 

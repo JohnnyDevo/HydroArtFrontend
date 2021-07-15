@@ -50,7 +50,14 @@ function showHideRows(input) {
     }
 }
 
+let feedbackButtonPressed = false;
+
 async function submitFeedback(form) {
+    if (feedbackButtonPressed) {
+        return;
+    } else {
+        feedbackButtonPressed = true;
+    }
     const destination = `${API_URL}:${API_PORT}/comments`;
 
     const cardContainer = document.getElementById("card-feedback");
@@ -96,5 +103,6 @@ async function submitFeedback(form) {
         const errorMessage = document.getElementById("feedback-error");
         errorMessage.innerText = "There was an error when communicating with the server, please try again later.";
         errorMessage.style.display = "block";
+        feedbackButtonPressed = false;
     }
 }

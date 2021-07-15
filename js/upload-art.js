@@ -1,4 +1,11 @@
+let uploadButtonClicked = false;
+
 async function uploadArt(form) {
+    if (uploadButtonClicked) {
+        return;
+    } else {
+        uploadButtonClicked = true;
+    }
     const destination = `${API_URL}:${API_PORT}/art`;
 
     try {
@@ -18,7 +25,8 @@ async function uploadArt(form) {
     } catch (error) {
         const errorMessage = document.getElementById("upload-art-error");
         errorMessage.style.display = "block";
-        errorMessage.innerText = "There was an error when submitting your art to the server, please try again later."
+        errorMessage.innerText = "There was an error when submitting your art to the server, please try again later.";
+        uploadButtonClicked = false;
     }
 }
 

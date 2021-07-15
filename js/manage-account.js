@@ -1,4 +1,11 @@
+let updateButtonClicked = false;
+
 async function updateAccount(form) {
+    if (updateButtonClicked) {
+        return;
+    } else {
+        updateButtonClicked = true;
+    }
     const destination = `${API_URL}:${API_PORT}/users`;
 
     const data = {
@@ -26,9 +33,11 @@ async function updateAccount(form) {
         } else {
             const reason = await response.text();
             makeGenericError(reason, "server");
+            updateButtonClicked = false;
         }
     } catch (error) {
         makeGenericError(error.message, "browser");
+        updateButtonClicked = false;
     }
 }
 
