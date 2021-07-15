@@ -803,6 +803,20 @@ a.navigation {
     display: none;
 }
 
+#single-view-report-button {
+    position: absolute;
+    z-index: calc(10 + var(--z-modifier));
+    right: calc(48px * var(--size));
+    top: calc(24px * var(--size));
+    width: calc(48px * var(--size));
+    height: calc(48px * var(--size));
+}
+
+#single-view-report-button img {
+    width: 100%;
+    height: 100%;
+}
+
 .lds-spinner {
     color: official;
     display: inline-block;
